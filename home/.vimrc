@@ -197,6 +197,7 @@ autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 "
 " Keybindings
 "
+inoremap <C-c> <Esc>
 let mapleader = "\<space>"
 nnoremap j VipJ " visually select the entire paragraph and then join the lines in it
 " emacs movement
