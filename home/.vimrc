@@ -94,6 +94,8 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
 Bundle 'bling/vim-airline'
+Bundle 'kbarrette/mediummode'
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 
 let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme base16-eighties
@@ -109,7 +111,6 @@ elseif has("clipboard")
 endif
 
 set autoindent
-set number
 set history=1000
 set cursorline
 set autowrite                  " automatically write a file when leaving a modified buffer
@@ -148,6 +149,7 @@ endif
 
 set linespace=0                 " No extra spaces between rows
 set nu                          " Line numbers on
+set rnu                         " It's all relative
 
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
@@ -196,6 +198,7 @@ autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 " Keybindings
 "
 let mapleader = ' '
+nnoremap j VipJ " visually select the entire paragraph and then join the lines in it
 " Easier moving in tabs and windows
 " The lines conflict with the default digraph mapping of <C-K>
 map <C-J> <C-W>j<C-W>_
