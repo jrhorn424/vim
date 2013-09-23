@@ -197,8 +197,27 @@ autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 "
 " Keybindings
 "
-let mapleader = ' '
+let mapleader = "\<space>"
 nnoremap j VipJ " visually select the entire paragraph and then join the lines in it
+" emacs movement
+cnoremap <C-a>  <Home>
+cnoremap <C-b>  <Left>
+cnoremap <C-f>  <Right>
+cnoremap <C-d>  <Delete>
+cnoremap <M-b>  <S-Left>
+cnoremap <M-f>  <S-Right>
+cnoremap <M-d>  <S-right><Delete>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+cnoremap <Esc>d <S-right><Delete>
+cnoremap <C-g>  <C-c>
+" switch tabs types
+nmap <Leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
+nmap <Leader>T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
+nmap <Leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
+nmap <Leader>m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
+" switch wrap
+nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 " Easier moving in tabs and windows
 " The lines conflict with the default digraph mapping of <C-K>
 map <C-J> <C-W>j<C-W>_
