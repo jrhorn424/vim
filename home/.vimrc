@@ -92,7 +92,10 @@ Bundle 'quentindecock/vim-cucumber-align-pipes'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
+Bundle 'chriskempson/base16-vim'
 
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-eighties
 set background=dark
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
