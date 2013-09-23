@@ -93,6 +93,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
+Bundle 'bling/vim-airline'
 
 let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme base16-eighties
