@@ -15,15 +15,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-if executable('ack-grep')
-    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-    Bundle 'mileszs/ack.vim'
-elseif executable('ack')
-    Bundle 'mileszs/ack.vim'
-elseif executable('ag')
-    Bundle 'mileszs/ack.vim'
-    let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-endif
 " general
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
@@ -38,15 +29,8 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'vim-scripts/restore_view.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-abolish.git'
-" programming
 Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'godlygeek/tabular'
-Bundle 'majutsushi/tagbar'
-" snippets and autocomplete
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
 Bundle 'honza/vim-snippets'
@@ -54,61 +38,18 @@ Bundle 'honza/vim-snippets'
 if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
     source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
 endif
-" php
-Bundle 'spf13/PIV'
-Bundle 'arnaud-lb/vim-php-namespace'
-" python
-Bundle 'klen/python-mode'
-Bundle 'python.vim'
-Bundle 'python_match.vim'
-Bundle 'pythoncomplete'
-" javascript
-Bundle 'elzr/vim-json'
-Bundle 'groenewege/vim-less'
-Bundle 'pangloss/vim-javascript'
-Bundle 'briancollins/vim-jst'
-Bundle 'kchmck/vim-coffee-script'
-" html
-Bundle 'amirh/HTML-AutoCloseTag'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'tpope/vim-haml'
-" ruby
-Bundle 'tpope/vim-rails'
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-" golang
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'spf13/vim-gocode'
-" misc
 Bundle 'tpope/vim-markdown'
-Bundle 'spf13/vim-preview'
-Bundle 'tpope/vim-cucumber'
-Bundle 'quentindecock/vim-cucumber-align-pipes'
-
-"
-" My bundles
-"
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
 Bundle 'bling/vim-airline'
-Bundle 'kbarrette/mediummode'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-eighties
 set background=dark
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 syntax on
-
-if has("unnamedplus")
-  set clipboard=unnamedplus
-elseif has("clipboard")
-  set clipboard=unnamed
-endif
 
 set autoindent
 set history=1000
@@ -127,25 +68,6 @@ highlight clear SignColumn      " SignColumn should match background for
 
 highlight clear LineNr          " Current line number row will have same background color in relative mode.
                                 " Things like vim-gitgutter will match LineNr highlight
-
-if has('cmdline_info')
-    set ruler                   " Show the ruler
-    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-    set showcmd                 " Show partial commands in status line and
-                                " Selected characters/lines in visual mode
-endif
-
-if has('statusline')
-    set laststatus=2
-
-    " Broken down into easily includeable segments
-    set statusline=%<%f\                     " Filename
-    set statusline+=%w%h%m%r                 " Options
-    set statusline+=%{fugitive#statusline()} " Git Hotness
-    set statusline+=\ [%{&ff}/%Y]            " Filetype
-    set statusline+=\ [%{getcwd()}]          " Current dir
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
 
 set linespace=0                 " No extra spaces between rows
 set nu                          " Line numbers on
@@ -376,16 +298,6 @@ let b:match_ignorecase = 1
     nmap <leader>ss :SessionSave<CR>
 " }
 
-" JSON {
-    nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-" }
-
-" PyMode {
-    let g:pymode_lint_checker = "pyflakes"
-    let g:pymode_utils_whitespaces = 0
-    let g:pymode_options = 0
-" }
-
 " ctrlp {
     let g:ctrlp_working_path_mode = 'ra'
     nnoremap <silent> <D-t> :CtrlP<CR>
@@ -412,45 +324,6 @@ let b:match_ignorecase = 1
             \ 'fallback': 'find %s -type f'
         \ }
     endif
-"}
-
-" TagBar {
-    nnoremap <silent> <leader>tt :TagbarToggle<CR>
-
-    " If using go please install the gotags program using the following
-    " go install github.com/jstemmer/gotags
-    " And make sure gotags is in your path
-    let g:tagbar_type_go = {
-        \ 'ctagstype' : 'go',
-        \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-            \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-            \ 'r:constructor', 'f:functions' ],
-        \ 'sro' : '.',
-        \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-        \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-        \ 'ctagsbin'  : 'gotags',
-        \ 'ctagsargs' : '-sort -silent'
-        \ }
-"}
-
-" PythonMode {
-    " Disable if python support not present
-    if !has('python')
-        let g:pymode = 1
-    endif
-" }
-
-" Fugitive {
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-    nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
-    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
-    nnoremap <silent> <leader>ge :Gedit<CR>
-    nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 "}
 
 " neocomplcache {
