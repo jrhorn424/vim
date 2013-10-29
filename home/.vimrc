@@ -43,7 +43,6 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
-Bundle 'bling/vim-airline'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 
 set background=dark
