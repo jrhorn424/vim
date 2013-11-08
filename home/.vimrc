@@ -38,9 +38,8 @@ Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 
-Bundle 'nathanaelkane/vim-indent-guides'
-
-set background=dark
+set background=light
+colorscheme base16-chalk
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 syntax on
@@ -73,8 +72,30 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
+
+"
+" Handle whitespace
+" http://stackoverflow.com/questions/2158305/is-it-possible-to-display-indentation-guides-in-vim
+"
+set nowrap                      " don't wrap lines
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set backspace=indent,eol,start  " backspace through everything in insert mode
+filetype indent plugin on
+
+" indent guides
 set list
-set listchars=tab:»-,trail:·,eol:¶,extends:>,precedes:<
+set listchars=tab:┊\ ,trail:·,eol:¶,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
+
+" convert spaces to tabs when reading file
+autocmd! bufreadpost * set noexpandtab | retab! 2
+
+" convert tabs to spaces before writing file
+autocmd! bufwritepre * set expandtab | retab! 2
+
+" convert spaces to tabs after writing file (to show guides again)
+autocmd! bufwritepost * set noexpandtab | retab! 2
 
 "
 " Paranoia
@@ -85,14 +106,6 @@ if has('persistent_undo')
     set undolevels=1000         " Maximum number of changes that can be undone
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
-
-"" Whitespace
-set nowrap                      " don't wrap lines
-set tabstop=2 shiftwidth=2      " a tab is two spaces
-set expandtab                   " use spaces, not tabs
-set backspace=indent,eol,start  " backspace through everything in insert mode
-filetype indent plugin on
-set softtabstop=2
 
 "" Searching
 set hlsearch                    " highlight matches
