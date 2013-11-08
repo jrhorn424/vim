@@ -37,7 +37,8 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'Yggdroot/indentLine'
+
+Bundle 'nathanaelkane/vim-indent-guides'
 
 set background=dark
 set showcmd                     " display incomplete commands
