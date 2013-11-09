@@ -28,8 +28,8 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'takac/vim-hardtime'
 
 set background=light
-colorscheme base16-default
-set showcmd                     " display incomplete commands
+colorscheme base16-chalk
+set showcmd           Jk          " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 syntax on
 
