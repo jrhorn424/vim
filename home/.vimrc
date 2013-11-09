@@ -15,7 +15,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-" general
+
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle 'spf13/vim-autoclose'
@@ -37,6 +37,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 set background=light
 colorscheme base16-chalk
@@ -46,7 +47,7 @@ syntax on
 
 set autoindent
 set history=1000
-set cursorline
+set nocursorline
 set autowrite                  " automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 scriptencoding utf-8
@@ -86,7 +87,7 @@ filetype indent plugin on
 
 " indent guides
 set list
-set listchars=tab:┊\ ,trail:·,eol:¶,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
+set listchars=trail:·,eol:¶,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
 
 " convert spaces to tabs when reading file
 autocmd! bufreadpost * set noexpandtab | retab! 2
@@ -343,7 +344,7 @@ let b:match_ignorecase = 1
     let g:indent_guides_auto_colors = 1
     let g:indent_guides_start_level = 2
     let g:indent_guides_guide_size = 1
-    "let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_enable_on_vim_startup = 1
 " }
 
 " vim-gitgutter {
