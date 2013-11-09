@@ -8,39 +8,27 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-"
-" Bundles recommended by SPF13
-"
 " dependencies
 Bundle 'gmarik/vundle'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 
-Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
-Bundle 'spf13/vim-autoclose'
 Bundle 'kien/ctrlp.vim'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'vim-scripts/sessionman.vim'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'myusuf3/numbers.vim'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'vim-scripts/restore_view.vim'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-abolish.git'
 Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-commentary'
 Bundle 'chriskempson/base16-vim'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'takac/vim-hardtime'
 
 set background=light
-colorscheme base16-chalk
+colorscheme base16-default
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 syntax on
@@ -65,7 +53,6 @@ highlight clear LineNr          " Current line number row will have same backgro
 
 set linespace=0                 " No extra spaces between rows
 set nu                          " Line numbers on
-set rnu                         " It's all relative
 
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
@@ -76,9 +63,9 @@ set foldenable                  " Auto fold code
 
 "
 " Handle whitespace
-" http://stackoverflow.com/questions/2158305/is-it-possible-to-display-indentation-guides-in-vim
 "
 set nowrap                      " don't wrap lines
+set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -87,16 +74,7 @@ filetype indent plugin on
 
 " indent guides
 set list
-set listchars=trail:·,eol:¶,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
-
-" convert spaces to tabs when reading file
-autocmd! bufreadpost * set noexpandtab | retab! 2
-
-" convert tabs to spaces before writing file
-autocmd! bufwritepre * set expandtab | retab! 2
-
-" convert spaces to tabs after writing file (to show guides again)
-autocmd! bufwritepost * set noexpandtab | retab! 2
+set listchars=trail:·,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
 
 "
 " Paranoia
@@ -122,46 +100,33 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
-autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-
 "
 " Keybindings
 "
 inoremap <C-c> <Esc>
 let mapleader = "\<space>"
 nnoremap j VipJ " visually select the entire paragraph and then join the lines in it
-" emacs movement
-cnoremap <C-a>  <Home>
-cnoremap <C-b>  <Left>
-cnoremap <C-f>  <Right>
-cnoremap <C-d>  <Delete>
-cnoremap <M-b>  <S-Left>
-cnoremap <M-f>  <S-Right>
-cnoremap <M-d>  <S-right><Delete>
-cnoremap <Esc>b <S-Left>
-cnoremap <Esc>f <S-Right>
-cnoremap <Esc>d <S-right><Delete>
-cnoremap <C-g>  <C-c>
+
 " switch tabs types
 nmap <Leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>
 nmap <Leader>T :set expandtab tabstop=8 shiftwidth=8 softtabstop=4<CR>
 nmap <Leader>M :set noexpandtab tabstop=8 softtabstop=4 shiftwidth=4<CR>
 nmap <Leader>m :set expandtab tabstop=2 shiftwidth=2 softtabstop=2<CR>
+
 " switch wrap
 nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
+
 " Easier moving in tabs and windows
 " The lines conflict with the default digraph mapping of <C-K>
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
+
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
 noremap k gk
-" The following two lines conflict with moving to top and
-" bottom of the screen
-map <S-H> gT
-map <S-L> gt
+
 " Stupid shift key fixes
 command! -bang -nargs=* -complete=file E e<bang> <args>
 command! -bang -nargs=* -complete=file W w<bang> <args>
@@ -172,9 +137,10 @@ command! -bang WA wa<bang>
 command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
-cmap Tabe tabe
+
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
+
 " Code folding options
 nmap <leader>f0 :set foldlevel=0<CR>
 nmap <leader>f1 :set foldlevel=1<CR>
@@ -187,6 +153,7 @@ nmap <leader>f7 :set foldlevel=7<CR>
 nmap <leader>f8 :set foldlevel=8<CR>
 nmap <leader>f9 :set foldlevel=9<CR>
 nmap <silent> <leader>/ :set invhlsearch<CR>
+
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
@@ -194,10 +161,6 @@ map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 " Change Working Directory to that of the current file
 cmap cwd lcd %:p:h
 cmap cd. lcd %:p:h
-
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
 
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
@@ -225,64 +188,12 @@ nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 map zl zL
 map zh zH
 
-let g:NERDShutUp=1
 let b:match_ignorecase = 1
-
-" OmniComplete {
-    if has("autocmd") && exists("+omnifunc")
-        autocmd Filetype *
-            \if &omnifunc == "" |
-            \setlocal omnifunc=syntaxcomplete#Complete |
-            \endif
-    endif
-
-    hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-    hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-    hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
-    " Some convenient mappings
-    inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-    inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-    inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-    inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-    inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-    inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-    " Automatically open and close the popup menu / preview window
-    au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-    set completeopt=menu,preview,longest
-" }
-
-
-" Ctags {
-    set tags=./tags;/,~/.vimtags
-
-    " Make tags placed in .git/tags file available in all levels of a repository
-    let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-    if gitroot != ''
-        let &tags = &tags . ',' . gitroot . '/.git/tags'
-    endif
-" }
 
 " AutoCloseTag {
     " Make it so AutoCloseTag works for xml and xhtml files as well
     au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
     nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-" }
-
-" NerdTree {
-    map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-    map <leader>e :NERDTreeFind<CR>
-    nmap <leader>nt :NERDTreeFind<CR>
-
-    let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-    let NERDTreeChDirMode=0
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeMouseMode=2
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=1
-    let g:nerdtree_tabs_open_on_gui_startup=0
 " }
 
 " Tabularize {
@@ -298,12 +209,6 @@ let b:match_ignorecase = 1
     vmap <Leader>a, :Tabularize /,<CR>
     nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-" }
-
-" Session List {
-    set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-    nmap <leader>sl :SessionList<CR>
-    nmap <leader>ss :SessionSave<CR>
 " }
 
 " ctrlp {
@@ -333,12 +238,6 @@ let b:match_ignorecase = 1
         \ }
     endif
 "}
-
-" UndoTree {
-    nnoremap <Leader>u :UndotreeToggle<CR>
-    " If undotree is opened, it is likely one wants to interact with it.
-    let g:undotree_SetFocusWhenToggle=1
-" }
 
 " indent_guides {
     let g:indent_guides_auto_colors = 1
@@ -370,16 +269,6 @@ endif
 " }
 
 " Functions {
-
-" UnBundle {
-function! UnBundle(arg, ...)
-  let bundle = vundle#config#init_bundle(a:arg, a:000)
-  call filter(g:bundles, 'v:val["name_spec"] != "' . a:arg . '"')
-endfunction
-
-com! -nargs=+         UnBundle
-\ call UnBundle(<args>)
-" }
 
 " Initialize directories {
 function! InitializeDirectories()
@@ -413,20 +302,6 @@ function! InitializeDirectories()
     endfor
 endfunction
 call InitializeDirectories()
-" }
-
-" Initialize NERDTree as needed {
-function! NERDTreeInitAsNeeded()
-    redir => bufoutput
-    buffers!
-    redir END
-    let idx = stridx(bufoutput, "NERD_tree")
-    if idx > -1
-        NERDTreeMirror
-        NERDTreeFind
-        wincmd l
-    endif
-endfunction
 " }
 
 " Strip whitespace {
