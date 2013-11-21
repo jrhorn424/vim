@@ -23,12 +23,12 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
-Bundle 'chriskempson/base16-vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'takac/vim-hardtime'
+Bundle 'altercation/vim-colors-solarized'
 
 set background=light
-colorscheme base16-chalk
+colorscheme solarized
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 syntax on
