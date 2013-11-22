@@ -74,7 +74,7 @@ filetype indent plugin on
 
 " indent guides
 set list
-set listchars=trail:·,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
+set listchars=tab:\ \ ,trail:·,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
 
 "
 " Paranoia
