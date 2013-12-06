@@ -27,11 +27,18 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'takac/vim-hardtime'
 Bundle 'altercation/vim-colors-solarized'
 
+"
+" Appearance
+"
+syntax on
+set t_Co=256
 set background=dark
+let g:solarized_termtrans = 1
 colorscheme solarized
+"
+
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
-syntax on
 
 set autoindent
 set history=1000
