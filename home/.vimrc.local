@@ -1,0 +1,48 @@
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-commentary'
+Bundle 'vim-scripts/restore_view.vim'
+Bundle 'terryma/vim-multiple-cursors'
+
+set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
+set showcmd                     " display incomplete commands
+
+set virtualedit=onemore         " Allow for cursor beyond last character
+set hidden                      " Allow buffer switching without saving
+set tabpagemax=15               " Only show 15 tabs
+
+set wildmenu                    " Show list instead of just completing
+set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set scrolljump=5                " Lines to scroll when cursor leaves screen
+set scrolloff=3                 " Minimum lines to keep above and below cursor
+set foldenable                  " Auto fold code
+
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+
+" Map <Leader>ff to display all lines with keyword under cursor
+" and ask which one to jump to
+nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+
+" Code folding options
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>
+nmap <silent> <leader>/ :set invhlsearch<CR>
+
+
+" Easier moving in tabs and windows
+" The lines conflict with the default digraph mapping of <C-K>
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
