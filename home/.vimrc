@@ -2,8 +2,6 @@ set nocompatible
 set encoding=utf-8
 inoremap <C-c> <Esc>
 let mapleader = "\<space>"
-syntax on
-filetype plugin indent on       " load file type plugins + indentation
 
 "
 " Vundle
@@ -22,10 +20,15 @@ Bundle 'altercation/vim-colors-solarized'
 let g:solarized_termtrans = 1
 colorscheme solarized
 
+" the following two options need to come after the colorscheme
+" definition
+filetype plugin indent on       " load file type plugins + indentation
+syntax on
+
 set autoindent
 set history=1000
-"set cursorline
-"set cursorcolumn
+set nocursorline
+set nocursorcolumn
 set autowrite                   " automatically write a file when leaving a modified buffer
 scriptencoding utf-8
 set showmode                    " Display the current mode
@@ -45,13 +48,6 @@ set backspace=indent,eol,start  " backspace through everything in insert mode
 " indent guides and special characters
 set list
 set listchars=tab:\ \ ,trail:·,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
-
-"
-" Paranoia
-"
-set backup                  " Backups are nice ...
-set backupdir=~/tmp,/tmp
-set directory=~/tmp,/tmp
 
 if has('persistent_undo')
   set undofile                " So is persistent undo ...
@@ -169,8 +165,42 @@ au BufRead,BufNewFile *.md set filetype=markdown
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 
-"
-" Local configuration for pairing sessions
-"
-"so $HOME/.vimrc.local
-"""
+" Save your backups to a less annoying place than the current directory.
+" If you have .vim-backup in the current directory, it'll use that.
+" Otherwise it saves it to ~/.vim/backup or . if all else fails.
+if isdirectory($HOME . '/.vim/backup') == 0
+  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
+endif
+set backupdir-=.
+set backupdir+=.
+set backupdir-=~/
+set backupdir^=~/.vim/backup/
+set backupdir^=./.vim-backup/
+set backup
+
+" Save your swp files to a less annoying place than the current directory.
+" If you have .vim-swap in the current directory, it'll use that.
+" Otherwise it saves it to ~/.vim/swap, ~/tmp or .
+if isdirectory($HOME . '/.vim/swap') == 0
+  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+endif
+set directory=./.vim-swap//
+set directory+=~/.vim/swap//
+set directory+=~/tmp//
+set directory+=.
+
+" viminfo stores the the state of your previous editing session
+set viminfo+=n~/.vim/viminfo
+
+if exists("+undofile")
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
+endif
