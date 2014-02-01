@@ -133,12 +133,18 @@ Bundle 'tpope/vim-bundler'
 " Vim utilities
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'jeetsukumaran/vim-buffergator' " change buffers with <leader>b
-Bundle 'scrooloose/nerdtree'           " file browsing
-Bundle 'tpope/vim-eunuch'              " Rename, move, etc.
-Bundle 'tpope/vim-surround'            " change single/double quotes, etc.
-Bundle 'tpope/vim-repeat'              " allow other plugins to use repeat operator
-Bundle 'tpope/vim-commentary'          " gcap to comment a whole paragraph, for example
+" change buffers with <leader>b
+Bundle 'jeetsukumaran/vim-buffergator'
+" file browsing
+Bundle 'scrooloose/nerdtree'
+" Rename, move, etc.
+Bundle 'tpope/vim-eunuch'
+" change single/double quotes, etc.
+Bundle 'tpope/vim-surround'
+" allow other plugins to use repeat operator
+Bundle 'tpope/vim-repeat'
+" gcap to comment a whole paragraph, for example
+Bundle 'tpope/vim-commentary'
 
 " Save your backups to a less annoying place than the current directory.
 " If you have .vim-backup in the current directory, it'll use that.
