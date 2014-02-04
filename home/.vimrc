@@ -1,6 +1,7 @@
 set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
+nnoremap Q <nop>
 
 inoremap <C-c> <Esc>
 let mapleader = "\<space>"
@@ -54,6 +55,9 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set backspace=indent,eol,start  " backspace through everything in insert mode
+" no whitespace at end of lines
+Bundle 'csexton/trailertrash.vim'
+autocmd BufWritePre * :Trim
 
 " indent guides and special characters
 set list
