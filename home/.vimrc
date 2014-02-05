@@ -136,6 +136,8 @@ Bundle 'tpope/vim-bundler'
 
 " Vim utilities
 Bundle 'kien/ctrlp.vim'
+let g:ctrlp_show_hidden = 1
+
 Bundle 'Lokaltog/vim-easymotion'
 " change buffers with <leader>b
 Bundle 'jeetsukumaran/vim-buffergator'
