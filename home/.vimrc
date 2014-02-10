@@ -25,6 +25,20 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 
+" always show status line
+set statusline=%t       "tail of the filename
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
+
 " Vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -137,6 +151,13 @@ Bundle 'tpope/vim-bundler'
 " Vim utilities
 Bundle 'kien/ctrlp.vim'
 let g:ctrlp_show_hidden = 1
+
+" project search
+" Bundle 'mileszs/ack.vim'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+Bundle 'rking/ag.vim'
+let g:agprg="ag --column"
+
 
 Bundle 'Lokaltog/vim-easymotion'
 " change buffers with <leader>b
