@@ -6,6 +6,7 @@ nnoremap Q <nop>
 inoremap <C-c> <Esc>
 let mapleader = "\<space>"
 
+set autoread                    " automatically re-read changed files from disk if no pending writes
 set history=1000
 set autoindent
 set autowrite                   " automatically write a file when leaving a modified buffer
@@ -315,8 +316,10 @@ Bundle 'rking/ag.vim'
 let g:agprg="ag --column"
 
 Bundle 'Lokaltog/vim-easymotion'
-" change buffers with <leader>b
-Bundle 'jeetsukumaran/vim-buffergator'
+" browser-like buffer navigation
+Bundle 'ton/vim-bufsurf'
+nmap <TAB> :BufSurfForward<CR>
+nmap <S-TAB> :BufSurfBack<CR>
 " file browsing
 Bundle 'scrooloose/nerdtree'
 " better linting and errors
