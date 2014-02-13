@@ -305,25 +305,43 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 
 " Vim utilities
-" fuzzy find files in project
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_show_hidden = 1
+" fuzzy find files in project and more
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/unite.vim'
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+let g:unite_source_history_yank_enable = 1
+let g:unite_data_directory='~/.vim/cache'
 
-" search within cwd
-" Bundle 'mileszs/ack.vim'
-" let g:ackprg = 'ag --nogroup --nocolor --column'
-Bundle 'rking/ag.vim'
-let g:agprg="ag --column"
+if executable('ag')
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+  let g:unite_source_grep_recursive_opt=''
+elseif executable('ack')
+  let g:unite_source_grep_command='ack'
+  let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
+  let g:unite_source_grep_recursive_opt=''
+endif
 
+nmap <Leader>f :Unite -no-split -start-insert file_rec/async file/new<CR>
+nmap <Leader>b :Unite -no-split -start-insert buffer<CR>
+nmap <Leader>y :Unite -no-split history/yank<CR>
+nmap <Leader>/ :Unite grep:.<CR>
+
+" code completion
+Bundle 'Valloric/YouCompleteMe'
+
+"
 Bundle 'Lokaltog/vim-easymotion'
+
 " browser-like buffer navigation
 Bundle 'ton/vim-bufsurf'
-nmap <TAB> :BufSurfForward<CR>
-nmap <S-TAB> :BufSurfBack<CR>
-" file browsing
-Bundle 'scrooloose/nerdtree'
+nnoremap <C-n> :BufSurfForward<CR>
+nnoremap <C-p> :BufSurfBack<CR>
+
 " better linting and errors
 Bundle 'scrooloose/syntastic'
+
 " Rename, move, etc.
 Bundle 'tpope/vim-eunuch'
 " change single/double quotes, etc.
