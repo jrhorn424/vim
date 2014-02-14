@@ -334,11 +334,6 @@ Bundle 'Valloric/YouCompleteMe'
 "
 Bundle 'Lokaltog/vim-easymotion'
 
-" browser-like buffer navigation
-Bundle 'ton/vim-bufsurf'
-nnoremap <C-n> :BufSurfForward<CR>
-nnoremap <C-p> :BufSurfBack<CR>
-
 " better linting and errors
 Bundle 'scrooloose/syntastic'
 
