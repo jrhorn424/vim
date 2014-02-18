@@ -307,7 +307,9 @@ au BufRead,BufNewFile *.md set filetype=markdown
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 
-" Vim utilities
+" Rails.vim for non-rails projects
+Bundle 'tpope/vim-rake'
+
 " fuzzy find files in project and more
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
@@ -335,15 +337,10 @@ nmap <Leader>b :Unite -no-split -start-insert buffer<CR>
 nmap <Leader>y :Unite -no-split history/yank<CR>
 nmap <Leader>/ :Unite grep:.<CR>
 
-" code completion
-Bundle 'Valloric/YouCompleteMe'
-
 "
 Bundle 'Lokaltog/vim-easymotion'
-
 " better linting and errors
 Bundle 'scrooloose/syntastic'
-
 " Rename, move, etc.
 Bundle 'tpope/vim-eunuch'
 " change single/double quotes, etc.
@@ -354,6 +351,10 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
 " git inside vim
 Bundle 'tpope/vim-fugitive'
+" crc to camelCase crs to snake_case cru to UPCASE
+Bundle 'tpope/vim-abolish'
+" sensible defaults for different languages
+Bundle 'tpope/vim-sensible'
 
 " Zoom windows with <C-w>o
 Bundle 'vim-scripts/ZoomWin'
@@ -381,9 +382,9 @@ set backup
 if isdirectory($HOME . '/.vim/swap') == 0
   :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
 endif
-set directory=./.vim-swap//
-set directory+=~/.vim/swap//
-set directory+=~/tmp//
+set directory=./.vim-swap/
+set directory+=~/.vim/swap/
+set directory+=~/tmp/
 set directory+=.
 
 " viminfo stores the the state of your previous editing session
@@ -397,8 +398,8 @@ if exists("+undofile")
   if isdirectory($HOME . '/.vim/undo') == 0
     :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
   endif
-  set undodir=./.vim-undo//
-  set undodir+=~/.vim/undo//
+  set undodir=./.vim-undo/
+  set undodir+=~/.vim/undo/
   set undofile
   if has('persistent_undo')
     set undolevels=1000         " Maximum number of changes that can be undone
