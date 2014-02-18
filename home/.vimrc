@@ -278,7 +278,11 @@ map <Leader>r :source $MYVIMRC<cr>
 map <Leader>ev :edit $MYVIMRC<cr>
 map <Leader>ss :source %<cr>
 map <Leader>i mmgg=G`m<cr>
-map <Leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
+
+" buffer nav
+map <Leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
+map <Leader>n :bn<CR>
+map <Leader>p :bp<CR>
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
@@ -286,7 +290,6 @@ map <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR
 
 " Search
 map <leader>h :nohlsearch<cr>
-map <silent> <leader>/ :set invhlsearch<CR>
 
 " Saner splits
 set splitright                  " Puts new vsplit windows to the right of the current
@@ -310,6 +313,8 @@ Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
+" call unite#custom#source('ag,ack,grep,find','ignore_pattern',join(['\.log$','coverage/'], '\|'))
+
 let g:unite_source_history_yank_enable = 1
 let g:unite_data_directory='~/.vim/cache'
 
@@ -317,13 +322,15 @@ if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
   let g:unite_source_grep_recursive_opt=''
+  let g:unite_source_async_command='ag --nocolor --nogroup'
 elseif executable('ack')
   let g:unite_source_grep_command='ack'
   let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
   let g:unite_source_grep_recursive_opt=''
+  let g:unite_source_async_command='ack -f --nofilter'
 endif
 
-nmap <Leader>f :Unite -no-split -start-insert file_rec/async file/new<CR>
+nmap <Leader>f :Unite -no-split -start-insert file_rec/async:! file/new<CR>
 nmap <Leader>b :Unite -no-split -start-insert buffer<CR>
 nmap <Leader>y :Unite -no-split history/yank<CR>
 nmap <Leader>/ :Unite grep:.<CR>
@@ -347,6 +354,13 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-commentary'
 " git inside vim
 Bundle 'tpope/vim-fugitive'
+
+" Zoom windows with <C-w>o
+Bundle 'vim-scripts/ZoomWin'
+
+" Navigate files
+Bundle 'scooloose/nerdtree'
+nmap <Leader>e :NERDTreeToggle<CR>
 
 " Save your backups to a less annoying place than the current directory.
 " If you have .vim-backup in the current directory, it'll use that.
