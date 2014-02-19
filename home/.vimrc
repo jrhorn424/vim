@@ -12,6 +12,7 @@ set autoindent
 set autowrite                   " automatically write a file when leaving a modified buffer
 set showmode                    " Display the current mode
 set linespace=0                 " No extra spaces between rows
+set number                      " this, along with relative numbers, enables hybrid number mode
 set relativenumber              " Use relative line numbers
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set showcmd                     " display incomplete commands
@@ -25,6 +26,7 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+set colorcolumn=80              " column border at 80 chars
 
 "statusline setup
 set statusline =%#identifier#
