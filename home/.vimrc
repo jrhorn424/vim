@@ -6,6 +6,7 @@ nnoremap Q <nop>
 inoremap <C-c> <Esc>
 let mapleader = "\<space>"
 
+set eol                         " include a newline at the end of files
 set autoread                    " automatically re-read changed files from disk if no pending writes
 set history=1000
 set autoindent
@@ -27,6 +28,7 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set colorcolumn=80              " column border at 80 chars
+set list listchars=nbsp:×,trail:·,precedes:«,extends:»,eol:¬,tab:▸\
 
 "statusline setup
 set statusline =%#identifier#
@@ -209,10 +211,13 @@ Bundle 'altercation/vim-colors-solarized'
 let g:solarized_termtrans = 1
 colorscheme solarized
 
-" the following two options need to come after the colorscheme
+" this option needs to come after the colorscheme
 " definition
-filetype plugin indent on       " load file type plugins + indentation
 syntax on
+
+filetype on
+filetype indent on
+filetype plugin on
 
 " don't highlight lines or columns, only highlight lines in insert mode
 set nocursorline
@@ -230,10 +235,6 @@ set backspace=indent,eol,start  " backspace through everything in insert mode
 " no whitespace at end of lines
 Bundle 'csexton/trailertrash.vim'
 autocmd BufWritePre * :Trim
-
-" indent guides and special characters
-set list
-set listchars=tab:\ \ ,trail:·,extends:»,precedes:«,nbsp:× " don't forget escaped trailing space
 
 " Searching
 set hlsearch                    " highlight matches
@@ -299,18 +300,13 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 
 " make split navigation work with tmux
 Bundle 'christoomey/vim-tmux-navigator'
-
-" Markdown
-Bundle 'tpope/vim-markdown'
-let g:markdown_fenced_languages = ['ruby', 'vim']
-au BufRead,BufNewFile *.md set filetype=markdown
-
-" Rails
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-bundler'
-
-" Rails.vim for non-rails projects
-Bundle 'tpope/vim-rake'
+" yank a paste window splits
+Bundle 'wesQ3/vim-windowswap'
+" Navigate files
+Bundle 'scooloose/nerdtree'
+nmap <Leader>e :NERDTreeToggle<CR>
+" Navigate tags
+Bundle 'majutsushi/tagbar'
 
 " fuzzy find files in project and more
 Bundle 'Shougo/vimproc.vim'
@@ -335,10 +331,18 @@ elseif executable('ack')
 endif
 
 nmap <Leader>f :Unite -no-split -start-insert file_rec/async:! file/new<CR>
-nmap <Leader>b :Unite -no-split -start-insert buffer<CR>
+nmap <Leader>b :Unite -no-split buffer<CR>
 nmap <Leader>y :Unite -no-split history/yank<CR>
 nmap <Leader>/ :Unite grep:.<CR>
 
+"
+Bundle 'msanders/snipmate.vim'
+" use (and customize) tab for completion
+Bundle 'ervandew/supertab'
+" autoclose brackets, parentheses, quotes
+Bundle 'Townk/vim-autoclose'
+" close html/xml tags
+Bundle 'tpope/vim-ragtag'
 "
 Bundle 'Lokaltog/vim-easymotion'
 " better linting and errors
@@ -361,9 +365,52 @@ Bundle 'tpope/vim-sensible'
 " Zoom windows with <C-w>o
 Bundle 'vim-scripts/ZoomWin'
 
-" Navigate files
-Bundle 'scooloose/nerdtree'
-nmap <Leader>e :NERDTreeToggle<CR>
+" Markdown
+Bundle 'tpope/vim-markdown'
+let g:markdown_fenced_languages = ['ruby', 'vim']
+au BufRead,BufNewFile *.md set filetype=markdown
+
+" Ruby
+Bundle 'vim-ruby/vim-ruby'
+" automatically add 'end' when appropriate
+if !exists( "*RubyEndToken" )
+
+  function RubyEndToken()
+    let current_line = getline( '.' )
+    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+    let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
+      let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+
+      if match(current_line, braces_at_end) >= 0
+        return "\<CR>}\<C-O>O"
+      elseif match(current_line, stuff_without_do) >= 0
+        return "\<CR>end\<C-O>O"
+      elseif match(current_line, with_do) >= 0
+        return "\<CR>end\<C-O>O"
+      else
+        return "\<CR>"
+      endif
+    endfunction
+
+endif
+
+imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
+
+" minitest completion and syntax highlighting
+Bundle 'sunaku/vim-ruby-minitest'
+set completefunc=syntaxcomplete#Complete
+
+" Rails
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-bundler'
+" slim syntax highlighting
+Bundle 'slim-template/vim-slim'
+" Rails.vim for non-rails projects
+Bundle 'tpope/vim-rake'
+
+"
+Bundle 'vim-scripts/vim-auto-save'
+let g:auto_save = 1
 
 " Save your backups to a less annoying place than the current directory.
 " If you have .vim-backup in the current directory, it'll use that.
