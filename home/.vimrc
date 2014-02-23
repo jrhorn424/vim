@@ -303,7 +303,7 @@ Bundle 'christoomey/vim-tmux-navigator'
 " yank a paste window splits
 Bundle 'wesQ3/vim-windowswap'
 " Navigate files
-Bundle 'scooloose/nerdtree'
+Bundle 'scrooloose/nerdtree'
 nmap <Leader>e :NERDTreeToggle<CR>
 " Navigate tags
 Bundle 'majutsushi/tagbar'
