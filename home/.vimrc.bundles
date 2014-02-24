@@ -1,38 +1,55 @@
 " make split navigation work with tmux
 Bundle 'christoomey/vim-tmux-navigator'
+
 " yank a paste window splits
 Bundle 'wesQ3/vim-windowswap'
+
 " Navigate files
 Bundle 'scrooloose/nerdtree'
 nmap <Leader>e :NERDTreeToggle<CR>
+
 " Navigate tags
 Bundle 'majutsushi/tagbar'
 
+" more text targets, like di' to delete things between single quotes
+Bundle 'wellle/targets.vim'
+
+"
+Bundle 'terryma/vim-multiple-cursors'
 
 "
 Bundle 'msanders/snipmate.vim'
-" use (and customize) tab for completion
-Bundle 'ervandew/supertab'
+
 " autoclose brackets, parentheses, quotes
 Bundle 'Townk/vim-autoclose'
+
 " close html/xml tags
 Bundle 'tpope/vim-ragtag'
+
 "
 Bundle 'Lokaltog/vim-easymotion'
+
 " better linting and errors
 Bundle 'scrooloose/syntastic'
+
 " Rename, move, etc.
 Bundle 'tpope/vim-eunuch'
+
 " change single/double quotes, etc.
 Bundle 'tpope/vim-surround'
+
 " allow other plugins to use repeat operator
 Bundle 'tpope/vim-repeat'
+
 " gcap to comment a whole paragraph, for example
 Bundle 'tpope/vim-commentary'
+
 " git inside vim
 Bundle 'tpope/vim-fugitive'
+
 " crc to camelCase crs to snake_case cru to UPCASE
 Bundle 'tpope/vim-abolish'
+
 " sensible defaults for different languages
 Bundle 'tpope/vim-sensible'
 

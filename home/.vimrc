@@ -30,8 +30,6 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 set colorcolumn=80              " column border at 80 chars
 set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " don't forget trailing whitespace after tab character
 
-source $HOME/.vimrc.statusline
-
 " Vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -97,8 +95,6 @@ map <Leader>= <C-w>=
 map zl zL
 map zh zH
 
-source $HOME/.vimrc.shortcuts
-
 " Search
 map <leader>h :nohlsearch<cr>
 
@@ -106,50 +102,16 @@ map <leader>h :nohlsearch<cr>
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 
-source $HOME/.vimrc.unite
-source $HOME/.vimrc.bundles
-
 " Markdown
 Bundle 'tpope/vim-markdown'
 let g:markdown_fenced_languages = ['ruby', 'vim']
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" Ruby
-Bundle 'vim-ruby/vim-ruby'
-" automatically add 'end' when appropriate
-if !exists( "*RubyEndToken" )
-
-  function RubyEndToken()
-    let current_line = getline( '.' )
-    let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
-    let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
-      let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
-
-      if match(current_line, braces_at_end) >= 0
-        return "\<CR>}\<C-O>O"
-      elseif match(current_line, stuff_without_do) >= 0
-        return "\<CR>end\<C-O>O"
-      elseif match(current_line, with_do) >= 0
-        return "\<CR>end\<C-O>O"
-      else
-        return "\<CR>"
-      endif
-    endfunction
-
-endif
-
-imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
-
-" minitest completion and syntax highlighting
-Bundle 'sunaku/vim-ruby-minitest'
-set completefunc=syntaxcomplete#Complete
-
-" Rails
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-bundler'
-" slim syntax highlighting
-Bundle 'slim-template/vim-slim'
-" Rails.vim for non-rails projects
-Bundle 'tpope/vim-rake'
-
+source $HOME/.vimrc.statusline
+source $HOME/.vimrc.shortcuts
+source $HOME/.vimrc.unite
+source $HOME/.vimrc.completion
+source $HOME/.vimrc.bundles
+source $HOME/.vimrc.ruby
+source $HOME/.vimrc.rails
 source $HOME/.vimrc.paranoia
