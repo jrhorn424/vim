@@ -15,6 +15,7 @@ set showmode                    " Display the current mode
 set linespace=0                 " No extra spaces between rows
 set number                      " this, along with relative numbers, enables hybrid number mode
 set relativenumber              " Use relative line numbers
+set shortmess=aTItoO            " disable splash screen
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set showcmd                     " display incomplete commands
 set virtualedit=onemore         " Allow for cursor beyond last character
