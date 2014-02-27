@@ -43,14 +43,6 @@ Bundle 'altercation/vim-colors-solarized'
 let g:solarized_termtrans = 1
 colorscheme solarized
 
-" this option needs to come after the colorscheme
-" definition
-syntax on
-
-filetype on
-filetype indent on
-filetype plugin on
-
 " don't highlight lines or columns, only highlight lines in insert mode
 set nocursorline
 set nocursorcolumn
@@ -113,6 +105,15 @@ source $HOME/.vimrc.shortcuts
 source $HOME/.vimrc.unite
 source $HOME/.vimrc.completion
 source $HOME/.vimrc.bundles
+source $HOME/.vimrc.git
 source $HOME/.vimrc.ruby
 source $HOME/.vimrc.rails
 source $HOME/.vimrc.paranoia
+
+" put me last
+syntax on
+
+filetype on
+filetype indent on
+filetype plugin on
+highlight clear SignColumn

@@ -52,9 +52,6 @@ Bundle 'vim-scripts/visualrepeat'
 " gcap to comment a whole paragraph, for example
 Bundle 'tpope/vim-commentary'
 
-" git inside vim
-Bundle 'tpope/vim-fugitive'
-
 " crc to camelCase crs to snake_case cru to UPCASE
 Bundle 'tpope/vim-abolish'
 
