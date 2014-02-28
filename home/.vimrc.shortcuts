@@ -1,26 +1,14 @@
-" Vim shortcuts
-nmap <leader>f0 :set foldlevel=0<CR>
-nmap <leader>f1 :set foldlevel=1<CR>
-nmap <leader>f2 :set foldlevel=2<CR>
-nmap <leader>f3 :set foldlevel=3<CR>
-nmap <leader>f4 :set foldlevel=4<CR>
-nmap <leader>f5 :set foldlevel=5<CR>
-nmap <leader>f6 :set foldlevel=6<CR>
-nmap <leader>f7 :set foldlevel=7<CR>
-nmap <leader>f8 :set foldlevel=8<CR>
-nmap <leader>f9 :set foldlevel=9<CR>
-
-map <Leader>x :exec getline(".")<cr>
-map <Leader>r :source $MYVIMRC<cr>
-map <Leader>ev :edit $MYVIMRC<cr>
-map <Leader>ss :source %<cr>
-map <Leader>i mmgg=G`m<cr>
+map <leader>x :exec getline(".")<cr>
+map <leader>r :source $MYVIMRC<cr>
+map <leader>ev :edit $MYVIMRC<cr>
+map <leader>ss :source %<cr>
+map <leader>i mmgg=G`m<cr>
 
 " buffer nav
-map <Leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
-map <Leader>n :bn<CR>
-map <Leader>p :bp<CR>
+map <leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
+map <leader>n :bn<CR>
+map <leader>p :bp<CR>
 
-" Map <Leader>ff to display all lines with keyword under cursor
+" Map <leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
-map <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+map <leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>

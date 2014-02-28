@@ -1,0 +1,4 @@
+Bundle 'tpope/vim-markdown'
+let g:markdown_fenced_languages = ['ruby', 'vim']
+au BufRead,BufNewFile *.md set filetype=markdown
+

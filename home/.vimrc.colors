@@ -1,0 +1,5 @@
+set t_Co=256
+set background=dark
+Bundle 'altercation/vim-colors-solarized'
+let g:solarized_termtrans = 1
+colorscheme solarized
