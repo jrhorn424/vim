@@ -26,7 +26,6 @@ set wildmode=list:longest,full  " Command <Tab> completion, list matches, then l
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
-set foldenable                  " Auto fold code
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set colorcolumn=80              " column border at 80 chars
 set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " don't forget trailing whitespace after tab character
@@ -117,3 +116,12 @@ filetype on
 filetype indent on
 filetype plugin on
 highlight clear SignColumn
+
+" ctags
+set tags+=./tags
+
+" folding
+set foldenable
+set foldlevel=1                  " Auto fold code
+map <leader>fi :setlocal foldmethod=indent<cr>
+map <leader>fs :setlocal foldmethod=syntax<cr>
