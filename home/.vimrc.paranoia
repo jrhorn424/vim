@@ -1,7 +1,3 @@
-"
-Bundle 'vim-scripts/vim-auto-save'
-let g:auto_save = 1
-
 " Save your backups to a less annoying place than the current directory.
 " If you have .vim-backup in the current directory, it'll use that.
 " Otherwise it saves it to ~/.vim/backup or . if all else fails.

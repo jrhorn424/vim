@@ -7,6 +7,46 @@ inoremap <C-c> <Esc>
 let mapleader = "\<space>"
 
 source $HOME/.vimrc.pathogen
+"=bundle tpope/vim-pathogen
+"=bundle tpope/vim-eunuch
+"=bundle tpope/vim-ragtag
+"=bundle tpope/vim-surround
+"=bundle tpope/vim-repeat
+"=bundle tpope/vim-commentary
+"=bundle tpope/vim-abolish
+"=bundle tpope/vim-sensible
+"=bundle csexton/trailertrash.vim
+autocmd BufWritePre * :Trim
+"=bundle christoomey/vim-tmux-navigator
+"=bundle wesQ3/vim-windowswap
+"=bundle scrooloose/nerdtree
+nmap <Leader>e :NERDTreeToggle<CR>
+"=bundle majutsushi/tagbar
+nmap <Leader>t :TagbarToggle<CR>
+"=bundle wellle/targets.vim
+"=bundle terryma/vim-multiple-cursors
+"=bundle junegunn/vim-easy-align
+vmap <Enter> <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+"=bundle msanders/snipmate.vim
+"=bundle Townk/vim-autoclose
+"=bundle Lokaltog/vim-easymotion
+"=bundle scrooloose/syntastic
+"=bundle vim-scripts/visualrepeat
+"=bundle vim-scripts/ZoomWin
+"=bundle altercation/vim-colors-solarized
+"=bundle Shougo/vimproc.vim
+"=bundle Shougo/unite.vim
+"=bundle ervandew/supertab
+"=bundle tpope/vim-fugitive
+"=bundle airblade/vim-gitgutter
+"=bundle vim-ruby/vim-ruby
+"=bundle sunaku/vim-ruby-minitest
+"=bundle tpope/vim-rails
+"=bundle tpope/vim-bundler
+"=bundle slim-template/vim-slim
+"=bundle tpope/vim-rake
+"=bundle tpope/vim-markdown
 
 set eol                         " include a newline at the end of files
 set autoread                    " automatically re-read changed files from disk if no pending writes
@@ -45,9 +85,6 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " don't forget trailing whitespace after tab character
-" no whitespace at end of lines
-Bundle 'csexton/trailertrash.vim'
-autocmd BufWritePre * :Trim
 " don't highlight lines or columns, only highlight lines in insert mode
 set nocursorline
 set nocursorcolumn
@@ -84,15 +121,4 @@ source $HOME/.vimrc.paranoia
 source $HOME/.vimrc.folding
 source $HOME/.vimrc.unite
 source $HOME/.vimrc.completion
-source $HOME/.vimrc.bundles
-source $HOME/.vimrc.git
-source $HOME/.vimrc.ruby
-source $HOME/.vimrc.rails
 source $HOME/.vimrc.markdown
-
-" put me last
-syntax on
-filetype on
-filetype indent on
-filetype plugin on
-highlight clear SignColumn

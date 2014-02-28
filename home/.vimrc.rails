@@ -1,7 +1,0 @@
-" Rails
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-bundler'
-" slim syntax highlighting
-Bundle 'slim-template/vim-slim'
-" Rails.vim for non-rails projects
-Bundle 'tpope/vim-rake'
