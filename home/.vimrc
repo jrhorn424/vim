@@ -155,7 +155,7 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
 
     autocmd BufWritePre * :Trim
 
-    nmap <leader>e :NERDTreeFind<cr>
+    nmap <leader>e :NERDTreeToggle<cr>
 
     nmap <leader>t :TagbarToggle<cr>
 
@@ -201,6 +201,7 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
     " Git mappings {{{
       nnoremap <leader>gf :Git fetch<cr>
       nnoremap <leader>gs :Gstatus<cr>
+      nnoremap <leader>gc :Gcommit<cr>
       nnoremap <leader>gu :Git push<cr>
       nnoremap <leader>gl :Git log --decorate --oneline --graph --all<cr>
     " }}}
@@ -210,6 +211,8 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
 
     let g:solarized_termtrans = 1
     colorscheme solarized
+    highlight clear SignColumn
+
   endif
 " }}}
 
