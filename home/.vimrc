@@ -35,6 +35,7 @@
 "=bundle altercation/vim-colors-solarized
 "=bundle wincent/Command-T
 "=bundle ervandew/supertab
+"=bundle vim-scripts/AutoComplPop
 "=bundle tpope/vim-rails
 "=bundle tpope/vim-bundler
 "=bundle tpope/vim-rake
