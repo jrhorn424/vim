@@ -180,8 +180,6 @@ filetype plugin indent off
       let g:neocomplcache_enable_underbar_completion = 1
       " AutoComplPop like behavior.
       let g:neocomplcache_enable_auto_select = 1
-      " Complete on <space>
-      " inoremap <expr><space> pumvisible() ? neocomplcache#smart_close_popup()."\<space>" : "\<space>"
       " snipmate snippets repo
       let g:neocomplcache_snippets_dir='~/.vim/bundle/snipmate-snippets/snippets'
     " }}}
