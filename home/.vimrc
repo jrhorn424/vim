@@ -165,25 +165,6 @@ filetype plugin indent off
     let g:surround_{char2nr(':')} = ":\r"
     let g:surround_indent = 1
 
-    " Neocomplcache {{{
-      " Disable AutoComplPop.
-      let g:acp_enableAtStartup = 0
-      " Use neocomplcache.
-      let g:neocomplcache_enable_at_startup = 1
-      " Use smartcase.
-      let g:neocomplcache_enable_smart_case = 1
-      " Set minimum syntax keyword length.
-      let g:neocomplcache_min_syntax_length = 3
-      " Use camel case completion.
-      let g:neocomplcache_enable_camel_case_completion = 1
-      " Use underbar completion.
-      let g:neocomplcache_enable_underbar_completion = 1
-      " AutoComplPop like behavior.
-      let g:neocomplcache_enable_auto_select = 1
-      " snipmate snippets repo
-      let g:neocomplcache_snippets_dir='~/.vim/bundle/snipmate-snippets/snippets'
-    " }}}
-
     " Git mappings {{{
       nnoremap <leader>gb :Gblame<cr>
       nnoremap <leader>gd :Gdiff<cr>
