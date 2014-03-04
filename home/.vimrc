@@ -144,20 +144,19 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
   syntax on
 " }}}
 
+filetype plugin indent off
 " Pathogen bundle settings {{{
   if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
   if isdirectory(g:bundle_dir)
 
     runtime bundle/vim-pathogen/autoload/pathogen.vim
-    filetype plugin indent off
     execute pathogen#infect()
-    filetype plugin indent on
 
     autocmd BufWritePre * :Trim
 
-    nmap <leader>e :NERDTreeToggle<cr>
+    nmap <leader>se :NERDTreeToggle<cr>
 
-    nmap <leader>t :TagbarToggle<cr>
+    nmap <leader>st :TagbarToggle<cr>
 
     vmap <Enter> <Plug>(EasyAlign)
     nmap <leader>a <Plug>(EasyAlign)
@@ -236,16 +235,16 @@ filetype plugin indent on
 
   map <leader>fi :setlocal foldmethod=indent<cr>
   map <leader>fs :setlocal foldmethod=syntax<cr>
-  nmap <leader>f0 :set foldlevel=0<CR>
-  nmap <leader>f1 :set foldlevel=1<CR>
-  nmap <leader>f2 :set foldlevel=2<CR>
-  nmap <leader>f3 :set foldlevel=3<CR>
-  nmap <leader>f4 :set foldlevel=4<CR>
-  nmap <leader>f5 :set foldlevel=5<CR>
-  nmap <leader>f6 :set foldlevel=6<CR>
-  nmap <leader>f7 :set foldlevel=7<CR>
-  nmap <leader>f8 :set foldlevel=8<CR>
-  nmap <leader>f9 :set foldlevel=9<CR>
+  nmap <leader>f0 :set foldlevel=0<cr>
+  nmap <leader>f1 :set foldlevel=1<cr>
+  nmap <leader>f2 :set foldlevel=2<cr>
+  nmap <leader>f3 :set foldlevel=3<cr>
+  nmap <leader>f4 :set foldlevel=4<cr>
+  nmap <leader>f5 :set foldlevel=5<cr>
+  nmap <leader>f6 :set foldlevel=6<cr>
+  nmap <leader>f7 :set foldlevel=7<cr>
+  nmap <leader>f8 :set foldlevel=8<cr>
+  nmap <leader>f9 :set foldlevel=9<cr>
 " }}}
 
 " Paranoia {{{
@@ -426,4 +425,4 @@ filetype plugin indent on
   augroup END
 " }}}
 
-" vim: foldmethod=indent:foldenable:foldlevel=0
+" vim: foldmethod=indent:nofoldenable
