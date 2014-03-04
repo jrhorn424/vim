@@ -295,7 +295,7 @@ filetype plugin indent on
 
 " Status line {{{
   set statusline =%#identifier#
-  set statusline+=[%t]    "tail of the filename
+  set statusline+=[%{pathshorten(expand('%'))}] " abbreviated relative path
   set statusline+=%*
 
   "display a warning if fileformat isnt unix
