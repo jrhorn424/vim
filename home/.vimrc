@@ -34,8 +34,6 @@
 "=bundle vim-scripts/ZoomWin
 "=bundle altercation/vim-colors-solarized
 "=bundle wincent/Command-T
-"=bundle Shougo/vimproc.vim
-"=bundle Shougo/neocomplcache.vim
 "=bundle ervandew/supertab
 "=bundle tpope/vim-rails
 "=bundle tpope/vim-bundler
@@ -54,6 +52,7 @@
 "
 " After installing or updating these bundles, recompile vimproc.vim and
 " install snipmate-snippets by issuing `rake deploy_local`.
+
 set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
@@ -224,6 +223,22 @@ filetype plugin indent on
   " Map <leader>ff to display all lines with keyword under cursor
   " and ask which one to jump to
   map <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<cr>
+" }}}
+
+" Completion {{{
+  " set completefunc=syntaxcomplete#Complete
+  " Omnicomplete settings {{{
+    augroup omnicomplete_group
+      autocmd FileType css             setlocal omnifunc=csscomplete#CompleteCSS
+      autocmd FileType html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+      autocmd FileType javascript      setlocal omnifunc=javascriptcomplete#CompleteJS
+      autocmd FileType python          setlocal omnifunc=pythoncomplete#Complete
+      autocmd FileType xml             setlocal omnifunc=xmlcomplete#CompleteTags
+      autocmd FileType ruby            set omnifunc=rubycomplete#Complete
+      autocmd FileType ruby            let g:rubycomplete_buffer_loading=1
+      autocmd FileType ruby            let g:rubycomplete_classes_in_global=1
+    augroup END
+  " }}}
 " }}}
 
 " Folding {{{
