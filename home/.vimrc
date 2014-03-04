@@ -197,6 +197,13 @@ filetype plugin indent off
       nnoremap <leader>g :Git<space>
     " }}}
 
+    " Update ctags with Dispatch {{{
+      function! UpdateCtagsRuby()
+        execute ":Dispatch! ctags -R . $(bundle list --paths)"
+      endfunction
+      nnoremap <leader>ct :call UpdateCtagsRuby()<cr>
+    " }}}
+
     let g:markdown_fenced_languages = ['ruby', 'vim']
     au BufRead,BufNewFile *.md set filetype=markdown
 
