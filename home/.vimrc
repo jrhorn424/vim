@@ -186,6 +186,8 @@ filetype plugin indent off
       nnoremap <leader>ct :call UpdateCtagsRuby()<cr>
     " }}}
 
+    let g:SuperTabDefaultCompletionType = "context"
+
     let g:markdown_fenced_languages = ['ruby', 'vim']
     au BufRead,BufNewFile *.md set filetype=markdown
 
