@@ -17,7 +17,6 @@
 "=bundle tpope/vim-fugitive
 "=bundle tpope/vim-dispatch
 "=bundle ton/vim-bufsurf
-"=bundle vim-scripts/AutoComplPop
 "=bundle airblade/vim-gitgutter
 "=bundle csexton/trailertrash.vim
 "=bundle christoomey/vim-tmux-navigator
@@ -34,8 +33,9 @@
 "=bundle vim-scripts/visualrepeat
 "=bundle vim-scripts/ZoomWin
 "=bundle altercation/vim-colors-solarized
+"=bundle wincent/Command-T
 "=bundle Shougo/vimproc.vim
-"=bundle Shougo/unite.vim
+"=bundle Shougo/neocomplcache.vim
 "=bundle ervandew/supertab
 "=bundle tpope/vim-rails
 "=bundle tpope/vim-bundler
@@ -166,44 +166,39 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
     let g:surround_{char2nr(':')} = ":\r"
     let g:surround_indent = 1
 
-    " Unite {{{
-      call unite#filters#matcher_default#use(['matcher_fuzzy'])
-      call unite#filters#sorter_default#use(['sorter_rank'])
-      " call unite#custom#source('ag,ack,grep,find','ignore_pattern',join(['\.log$','coverage/'], '\|'))
-
-      let g:unite_source_history_yank_enable = 1
-      let g:unite_data_directory='~/.vim/cache'
-
-      if executable('ag')
-        let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
-        let g:unite_source_grep_recursive_opt=''
-        let g:unite_source_async_command='ag --nocolor --nogroup'
-      elseif executable('ack')
-        let g:unite_source_grep_command='ack'
-        let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
-        let g:unite_source_grep_recursive_opt=''
-        let g:unite_source_async_command='ack -f --nofilter'
-      endif
-
-      nmap <leader>f :Unite -no-split -start-insert file_rec/async:! file/new<cr>
-      nmap <leader>b :Unite -no-split buffer<cr>
-      nmap <leader>y :Unite -no-split history/yank<cr>
-      nmap <leader>/ :Unite grep:.<cr>
-    " }}}
-
-    " Overrides for unimpaired.vim {{{
-      " nnoremap cor :set <C-R>=&number && &relativenumber ? 'nonumber norelativenumber' : 'number relativenumber'<CR><CR>
-      " nmap [b :BufSurfBack<cr>
-      " nmap ]b :BufSurfForward<cr>
+    " Neocomplcache {{{
+      " Disable AutoComplPop.
+      let g:acp_enableAtStartup = 0
+      " Use neocomplcache.
+      let g:neocomplcache_enable_at_startup = 1
+      " Use smartcase.
+      let g:neocomplcache_enable_smart_case = 1
+      " Set minimum syntax keyword length.
+      let g:neocomplcache_min_syntax_length = 3
+      " Use camel case completion.
+      let g:neocomplcache_enable_camel_case_completion = 1
+      " Use underbar completion.
+      let g:neocomplcache_enable_underbar_completion = 1
+      " AutoComplPop like behavior.
+      let g:neocomplcache_enable_auto_select = 1
+      " Complete on <space>
+      " inoremap <expr><space> pumvisible() ? neocomplcache#smart_close_popup()."\<space>" : "\<space>"
+      " snipmate snippets repo
+      let g:neocomplcache_snippets_dir='~/.vim/bundle/snipmate-snippets/snippets'
     " }}}
 
     " Git mappings {{{
+      nnoremap <leader>gb :Gblame<cr>
+      nnoremap <leader>gd :Gdiff<cr>
+      nnoremap <leader>gp :Git pull --rebase<cr><cr>
+      nnoremap <leader>gr :Gremove<cr>
+      nnoremap <leader>ga :Gwrite<cr>
       nnoremap <leader>gf :Git fetch<cr>
       nnoremap <leader>gs :Gstatus<cr>
       nnoremap <leader>gc :Gcommit<cr>
       nnoremap <leader>gu :Git push<cr>
       nnoremap <leader>gl :Git log --decorate --oneline --graph --all<cr>
+      nnoremap <leader>g :Git<space>
     " }}}
 
     let g:markdown_fenced_languages = ['ruby', 'vim']
@@ -215,6 +210,7 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
 
   endif
 " }}}
+filetype plugin indent on
 
 " Shortcuts {{{
   map <leader>x :exec getline(".")<cr>
@@ -224,29 +220,13 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
   map <leader>i mmgg=G`m<cr>
 
   " buffer nav
-  map <leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
-  map <leader>n :BufSurfForward<CR>
-  map <leader>p :BufSurfBack<CR>
+  map <leader>c :bp<bar>sp<bar>bn<bar>bd<cr>
+  map <leader>n :BufSurfForward<cr>
+  map <leader>p :BufSurfBack<cr>
 
   " Map <leader>ff to display all lines with keyword under cursor
   " and ask which one to jump to
-  map <leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-" }}}
-
-" Completion {{{
-  set completefunc=syntaxcomplete#Complete
-  " Omnicomplete settings {{{
-    augroup omnicomplete_group
-      autocmd FileType css             setlocal omnifunc=csscomplete#CompleteCSS
-      autocmd FileType html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
-      autocmd FileType javascript      setlocal omnifunc=javascriptcomplete#CompleteJS
-      autocmd FileType python          setlocal omnifunc=pythoncomplete#Complete
-      autocmd FileType xml             setlocal omnifunc=xmlcomplete#CompleteTags
-      autocmd FileType ruby            set omnifunc=rubycomplete#Complete
-      autocmd FileType ruby            let g:rubycomplete_buffer_loading=1
-      autocmd FileType ruby            let g:rubycomplete_classes_in_global=1
-    augroup END
-  " }}}
+  map <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<cr>
 " }}}
 
 " Folding {{{
