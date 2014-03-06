@@ -17,12 +17,14 @@
 "=bundle tpope/vim-fugitive
 "=bundle tpope/vim-dispatch
 "=bundle ton/vim-bufsurf
+"=bundle AndrewRadev/splitjoin.vim
+"=bundle rking/ag.vim
+"=bundle vim-scripts/taglist.vim
 "=bundle airblade/vim-gitgutter
 "=bundle csexton/trailertrash.vim
 "=bundle christoomey/vim-tmux-navigator
 "=bundle wesQ3/vim-windowswap
 "=bundle scrooloose/nerdtree
-"=bundle majutsushi/tagbar
 "=bundle wellle/targets.vim
 "=bundle terryma/vim-multiple-cursors
 "=bundle junegunn/vim-easy-align
@@ -64,7 +66,6 @@ let mapleader = "\<space>"
 set eol                         " include a newline at the end of files
 set autoread                    " automatically re-read changed files from disk if no pending writes
 set history=1000
-set autoindent
 set autowrite                   " automatically write a file when leaving a modified buffer
 set showmode                    " Display the current mode
 set linespace=0                 " No extra spaces between rows
@@ -144,7 +145,6 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
   syntax on
 " }}}
 
-filetype plugin indent off
 " Pathogen bundle settings {{{
   if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
   if isdirectory(g:bundle_dir)
@@ -155,11 +155,15 @@ filetype plugin indent off
     autocmd BufWritePre * :Trim
 
     nmap <leader>se :NERDTreeToggle<cr>
-
-    nmap <leader>st :TagbarToggle<cr>
+    nmap <leader>st :TlistToggle<cr>
 
     vmap <Enter> <Plug>(EasyAlign)
     nmap <leader>a <Plug>(EasyAlign)
+    let g:splitjoin_split_mapping = ''
+    let g:splitjoin_join_mapping = ''
+
+    nmap sj :SplitjoinSplit<cr>
+    nmap sk :SplitjoinJoin<cr>
 
     let g:surround_{char2nr('s')} = " \r"
     let g:surround_{char2nr(':')} = ":\r"
@@ -179,14 +183,12 @@ filetype plugin indent off
       nnoremap <leader>g :Git<space>
     " }}}
 
-    " Update ctags with Dispatch {{{
-      function! UpdateCtagsRuby()
-        execute ":Dispatch! ctags -R . $(bundle list --paths)"
-      endfunction
-      nnoremap <leader>ct :call UpdateCtagsRuby()<cr>
-    " }}}
-
     let g:SuperTabDefaultCompletionType = "context"
+    let g:acp_enableAtStartup = 1
+    let g:acp_ignorecaseOption = 1
+    let g:acp_completeoptPreview = 1
+
+    let g:ruby_indent_access_modifier_style = 'outdent'
 
     let g:markdown_fenced_languages = ['ruby', 'vim']
     au BufRead,BufNewFile *.md set filetype=markdown
@@ -194,26 +196,27 @@ filetype plugin indent off
     let g:solarized_termtrans = 1
     colorscheme solarized
     highlight clear SignColumn
-
   endif
 " }}}
 filetype plugin indent on
 
 " Shortcuts {{{
-  map <leader>x :exec getline(".")<cr>
-  map <leader>r :source $MYVIMRC<cr>
-  map <leader>ev :edit $MYVIMRC<cr>
-  map <leader>ss :source %<cr>
-  map <leader>i mmgg=G`m<cr>
+  nmap <leader>x :exec getline(".")<cr>
+  nmap <leader>r :source $MYVIMRC<cr>
+  nmap <leader>ev :edit $MYVIMRC<cr>
+  nmap <leader>ss :source %<cr>
+  nmap <leader>i mmgg=G`m<cr>
+  " convert hashrockets to 1.9 syntax
+  nmap <leader>hr :%s/:\([^=,'"]*\) =>/\1:/gc"'<cr>
 
   " buffer nav
-  map <leader>c :bp<bar>sp<bar>bn<bar>bd<cr>
-  map <leader>n :BufSurfForward<cr>
-  map <leader>p :BufSurfBack<cr>
+  nmap <leader>c :bp<bar>sp<bar>bn<bar>bd<cr>
+  nmap <leader>n :BufSurfForward<cr>
+  nmap <leader>p :BufSurfBack<cr>
 
   " Map <leader>ff to display all lines with keyword under cursor
   " and ask which one to jump to
-  map <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<cr>
+  nmap <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<cr>
 " }}}
 
 " Completion {{{
