@@ -18,6 +18,7 @@
 "=bundle tpope/vim-dispatch
 "=bundle ton/vim-bufsurf
 "=bundle AndrewRadev/splitjoin.vim
+"=bundle vim-scripts/YankRing.vim
 "=bundle rking/ag.vim
 "=bundle vim-scripts/taglist.vim
 "=bundle airblade/vim-gitgutter
@@ -49,6 +50,7 @@
 "=bundle pangloss/vim-javascript
 "=bundle tpope/vim-haml                 " for scss
 "=bundle csexton/jslint.vim
+"=bundle othree/html5.vim
 "=bundle nelstrom/vim-textobj-rubyblock " requires
 "=bundle kana/vim-textobj-user          "
 " }}}
@@ -113,6 +115,9 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
   set wildignore+=migrations                       " Django migrations
   set wildignore+=*.pyc                            " Python byte code
   set wildignore+=*.orig                           " Merge resolution files
+  set wildignore+=vendor,tmp,log                   " Rails project cruft
+  set wildignore+=app/assets/images
+  set wildignore+=app/assets/fonts
 " }}}
 
 " Miscellaneous settings {{{
@@ -156,6 +161,7 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
 
     nmap <leader>se :NERDTreeToggle<cr>
     nmap <leader>st :TlistToggle<cr>
+    nmap <leader>y :YRShow<cr>
 
     vmap <Enter> <Plug>(EasyAlign)
     nmap <leader>a <Plug>(EasyAlign)
@@ -183,6 +189,14 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
       nnoremap <leader>g :Git<space>
     " }}}
 
+    " CommandT autoupdate {{{
+      augroup commandt_group
+        autocmd!
+        autocmd FocusGained * CommandTFlush
+        autocmd BufWritePost * CommandTFlush
+      augroup END
+    " }}}
+
     let g:SuperTabDefaultCompletionType = "context"
     let g:acp_enableAtStartup = 1
     let g:acp_ignorecaseOption = 1
@@ -198,11 +212,12 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
     highlight clear SignColumn
   endif
 " }}}
+set autoindent
+set smartindent
 filetype plugin indent on
 
 " Shortcuts {{{
   nmap <leader>x :exec getline(".")<cr>
-  nmap <leader>r :source $MYVIMRC<cr>
   nmap <leader>ev :edit $MYVIMRC<cr>
   nmap <leader>ss :source %<cr>
   nmap <leader>i mmgg=G`m<cr>
