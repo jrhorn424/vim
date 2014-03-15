@@ -16,6 +16,7 @@
 "=bundle tpope/vim-endwise
 "=bundle tpope/vim-fugitive
 "=bundle tpope/vim-dispatch
+"=bundle chrisbra/Recover.vim
 "=bundle ton/vim-bufsurf
 "=bundle AndrewRadev/splitjoin.vim
 "=bundle vim-scripts/YankRing.vim
