@@ -217,6 +217,9 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
       let g:EasyMotion_use_smartsign_us = 1
     " }}}
 
+    let g:yankring_replace_n_pkey = '<m-p>'
+    let g:yankring_replace_n_nkey = '<m-n>'
+
     let g:buffergator_viewport_split_policy = "B"
     let g:buffergator_suppress_keymaps = 1
     nmap <leader>b :BuffergatorToggle<cr>
