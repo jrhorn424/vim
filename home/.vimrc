@@ -16,6 +16,7 @@
 "=bundle tpope/vim-endwise
 "=bundle tpope/vim-fugitive
 "=bundle tpope/vim-dispatch
+"=bundle Lokaltog/vim-easymotion
 "=bundle chrisbra/Recover.vim
 "=bundle ton/vim-bufsurf
 "=bundle AndrewRadev/splitjoin.vim
@@ -196,6 +197,23 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
         autocmd FocusGained * CommandTFlush
         autocmd BufWritePost * CommandTFlush
       augroup END
+    " }}}
+
+    " Easymotion mappings {{{
+      nmap s <Plug>(easymotion-s2)
+      nmap t <Plug>(easymotion-t2)
+      map  / <Plug>(easymotion-sn)
+      omap / <Plug>(easymotion-tn)
+      map  n <Plug>(easymotion-next)
+      map  N <Plug>(easymotion-prev)
+      map <Leader>h <Plug>(easymotion-lineforward)
+      map <Leader>j <Plug>(easymotion-j)
+      map <Leader>k <Plug>(easymotion-k)
+      map <Leader>l <Plug>(easymotion-linebackward)
+      let g:EasyMotion_use_upper = 1
+      let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+      let g:EasyMotion_smartcase = 1
+      let g:EasyMotion_use_smartsign_us = 1
     " }}}
 
     let g:SuperTabDefaultCompletionType = "context"
