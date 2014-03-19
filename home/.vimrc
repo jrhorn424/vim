@@ -19,6 +19,7 @@
 "=bundle Lokaltog/vim-easymotion
 "=bundle chrisbra/Recover.vim
 "=bundle ton/vim-bufsurf
+"=bundle jeetsukumaran/vim-buffergator
 "=bundle AndrewRadev/splitjoin.vim
 "=bundle vim-scripts/YankRing.vim
 "=bundle rking/ag.vim
