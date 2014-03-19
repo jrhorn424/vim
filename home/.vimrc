@@ -89,7 +89,7 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set colorcolumn=80              " column border at 80 chars
 
-set hlsearch                    " highlight matches
+set nohlsearch                    " do not highlight matches
 set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
@@ -217,6 +217,7 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
       let g:EasyMotion_use_smartsign_us = 1
     " }}}
 
+    let g:buffergator_viewport_split_policy = "B"
     let g:buffergator_suppress_keymaps = 1
     nmap <leader>b :BuffergatorToggle<cr>
 
