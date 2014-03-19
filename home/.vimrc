@@ -166,8 +166,8 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
     nmap <leader>st :TlistToggle<cr>
     nmap <leader>y :YRShow<cr>
 
-    vmap <Enter> <Plug>(EasyAlign)
-    nmap <leader>a <Plug>(EasyAlign)
+    vmap <Enter> <plug>(EasyAlign)
+    nmap <leader>a <plug>(EasyAlign)
     let g:splitjoin_split_mapping = ''
     let g:splitjoin_join_mapping = ''
 
@@ -201,21 +201,24 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
     " }}}
 
     " Easymotion mappings {{{
-      nmap s <Plug>(easymotion-s2)
-      nmap t <Plug>(easymotion-t2)
-      map  / <Plug>(easymotion-sn)
-      omap / <Plug>(easymotion-tn)
-      map  n <Plug>(easymotion-next)
-      map  N <Plug>(easymotion-prev)
-      map <Leader>h <Plug>(easymotion-lineforward)
-      map <Leader>j <Plug>(easymotion-j)
-      map <Leader>k <Plug>(easymotion-k)
-      map <Leader>l <Plug>(easymotion-linebackward)
+      nmap s <plug>(easymotion-s2)
+      nmap t <plug>(easymotion-t2)
+      map  / <plug>(easymotion-sn)
+      omap / <plug>(easymotion-tn)
+      map  n <plug>(easymotion-next)
+      map  N <plug>(easymotion-prev)
+      map <leader>h <plug>(easymotion-lineforward)
+      map <leader>j <plug>(easymotion-j)
+      map <leader>k <plug>(easymotion-k)
+      map <leader>l <plug>(easymotion-linebackward)
       let g:EasyMotion_use_upper = 1
       let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
       let g:EasyMotion_smartcase = 1
       let g:EasyMotion_use_smartsign_us = 1
     " }}}
+
+    let g:buffergator_suppress_keymaps = 1
+    nmap <leader>b :BuffergatorToggle<cr>
 
     let g:SuperTabDefaultCompletionType = "context"
     let g:acp_enableAtStartup = 1
