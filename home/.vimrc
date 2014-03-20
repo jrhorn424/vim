@@ -228,6 +228,7 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
     let g:acp_enableAtStartup = 1
     let g:acp_ignorecaseOption = 1
     let g:acp_completeoptPreview = 1
+    let g:acp_autoselectFirstCompletion = 1
 
     let g:ruby_indent_access_modifier_style = 'outdent'
 
