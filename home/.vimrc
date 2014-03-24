@@ -219,6 +219,7 @@ set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " do
 
     let g:yankring_replace_n_pkey = '<m-p>'
     let g:yankring_replace_n_nkey = '<m-n>'
+    let g:yankring_history_dir = '$HOME/.vim'
 
     let g:buffergator_viewport_split_policy = "B"
     let g:buffergator_suppress_keymaps = 1
