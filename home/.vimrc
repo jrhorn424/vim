@@ -105,7 +105,6 @@ set softtabstop=2
 set shiftwidth=2
 set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " don't forget trailing whitespace after tab character
 set viewoptions=cursor,folds,slash,unix,options
-let g:netrw_liststyle=3         " open netrw in tree mode
 
 " Wildmenu {{{
 set wildmenu
