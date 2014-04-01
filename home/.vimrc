@@ -104,7 +104,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " don't forget trailing whitespace after tab character
-set viewoptions=cursor,folds,slash,unix,options
+set viewoptions=cursor,folds,slash,unix
 
 " Wildmenu {{{
 set wildmenu
@@ -166,9 +166,9 @@ if isdirectory(g:bundle_dir)
 
   " smalls {{{
   let g:smalls_shade = 0
-  nmap s <Plug>(smalls)
-  omap s <Plug>(smalls)
-  xmap s <Plug>(smalls)
+  nmap / <Plug>(smalls)
+  omap / <Plug>(smalls)
+  xmap / <Plug>(smalls)
   " }}}
 
   " neocomplete {{{
@@ -227,7 +227,6 @@ if isdirectory(g:bundle_dir)
   nmap <silent> <leader>d <Plug>DashSearch
 
   vmap <Enter> <plug>(EasyAlign)
-  nmap <leader>a <plug>(EasyAlign)
 
   let g:splitjoin_split_mapping = ''
   let g:splitjoin_join_mapping = ''
@@ -277,11 +276,12 @@ if isdirectory(g:bundle_dir)
   colorscheme solarized
   highlight clear SignColumn
 endif
-" }}}
 
+" This has to come after pathogen
 set autoindent
 set smartindent
 filetype plugin indent on
+" }}}
 
 " Shortcuts {{{
 nmap <leader>x :exec getline(".")<cr>
