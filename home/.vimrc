@@ -16,7 +16,6 @@
 "=bundle tpope/vim-sensible
 "=bundle tpope/vim-markdown
 "=bundle tpope/vim-endwise
-"=bundle tpope/vim-fugitive
 "=bundle tpope/vim-dispatch
 "=bundle tpope/vim-vinegar
 "=bundle t9md/vim-smalls
@@ -30,7 +29,6 @@
 "=bundle jeetsukumaran/vim-buffergator
 "=bundle AndrewRadev/splitjoin.vim
 "=bundle vim-scripts/YankRing.vim
-"=bundle rking/ag.vim
 "=bundle airblade/vim-gitgutter
 "=bundle csexton/trailertrash.vim
 "=bundle christoomey/vim-tmux-navigator
@@ -57,6 +55,11 @@
 "=bundle othree/html5.vim
 "=bundle nelstrom/vim-textobj-rubyblock " requires
 "=bundle kana/vim-textobj-user          "
+"=bundle tpope/vim-fugitive
+"=bundle jaxbot/github-issues.vim
+"=bundle rizzatti/funcoo.vim
+"=bundle rizzatti/greper.vim
+"=bundle rizzatti/dash.vim
 " }}}
 "
 " After installing or updating these bundles, recompile `vimproc.vim`.
@@ -215,9 +218,14 @@ if isdirectory(g:bundle_dir)
   endif
   " }}}
 
+  let g:github_access_token = "384c8c78a64ec0868a2d5b06ea22ef8c7c9492d3"
+  let g:github_upstream_issues = 1
+
   autocmd BufWritePre * :Trim
 
   nmap <leader>y :YRShow<cr>
+  nmap <silent> <leader>a <Plug>GreperBangWord
+  nmap <silent> <leader>d <Plug>DashSearch
 
   vmap <Enter> <plug>(EasyAlign)
   nmap <leader>a <plug>(EasyAlign)
