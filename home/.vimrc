@@ -339,6 +339,19 @@ nmap <leader>f8 :set foldlevel=8<cr>
 nmap <leader>f9 :set foldlevel=9<cr>
 " }}}
 
+" Scratch buffers {{{
+function! ScratchEdit(cmd, options)
+  exe a:cmd tempname()
+  setl buftype=nofile bufhidden=wipe nobuflisted
+  if !empty(a:options) | exe 'setl' a:options | endif
+endfunction
+
+command! -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
+command! -bar -nargs=* Ssplit call ScratchEdit('split', <q-args>)
+command! -bar -nargs=* Svsplit call ScratchEdit('vsplit', <q-args>)
+command! -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
+" }}}
+
 " Paranoia {{{
 " Save your backups to a less annoying place than the current directory.
 " If you have .vim-backup in the current directory, it'll use that.
