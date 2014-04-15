@@ -59,7 +59,9 @@
 "=bundle rizzatti/funcoo.vim
 "=bundle rizzatti/greper.vim
 "=bundle rizzatti/dash.vim
-"=bundle plasticboy/vim-markdown
+"=bundle tpope/vim-markdown
+"=bundle itspriddle/vim-marked
+"=bundle evanmiller/nginx-vim-syntax
 " }}}
 "
 " After installing or updating these bundles, recompile `vimproc.vim`.
@@ -236,11 +238,14 @@ if isdirectory(g:bundle_dir)
   let g:github_access_token = "384c8c78a64ec0868a2d5b06ea22ef8c7c9492d3"
   let g:github_upstream_issues = 1
 
-  autocmd BufWritePre * :Trim
+  augroup trailertrash
+    autocmd BufWritePre * if index(['markdown', 'vim'], &ft) < 0 | :Trim
+  augroup END
 
   nmap <leader>y :YRShow<cr>
   nmap <silent> <leader>a <Plug>GreperBangWord
   nmap <silent> <leader>d <Plug>DashSearch
+  " when testing, call Focus and enter your command, then use this map to re-run tests
   nnoremap <F8> :Dispatch<cr>
 
   vmap <Enter> <plug>(EasyAlign)
@@ -286,9 +291,6 @@ if isdirectory(g:bundle_dir)
 
   let g:ruby_indent_access_modifier_style = 'outdent'
 
-  let g:markdown_fenced_languages = ['ruby', 'vim']
-  au BufRead,BufNewFile *.md set filetype=markdown
-
   let g:solarized_termtrans = 1
   colorscheme solarized
   highlight clear SignColumn
@@ -307,6 +309,8 @@ nmap <leader>ss :source %<cr>
 nmap <leader>i mmgg=G`m<cr>
 " convert hashrockets to 1.9 syntax
 nmap <leader>hr :%s/:\([^=,'"]*\) =>/\1:/gc"'<cr>
+" convert end erb tags to -%>
+nmap <leader>-% :%s/[^-]%>/ -%>/gc<cr>
 
 " buffer nav
 nmap <leader>c :bp<bar>sp<bar>bn<bar>bd<cr>
@@ -354,6 +358,13 @@ nmap <leader>f6 :set foldlevel=6<cr>
 nmap <leader>f7 :set foldlevel=7<cr>
 nmap <leader>f8 :set foldlevel=8<cr>
 nmap <leader>f9 :set foldlevel=9<cr>
+" }}}
+
+" Markdown {{{
+augroup markdown
+  autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=markdown
+  autocmd FileType markdown setlocal formatoptions+=tcroqwanl formatoptions-=j comments=b:*,b:+,b:-
+augroup END
 " }}}
 
 " Scratch buffers {{{
@@ -427,8 +438,6 @@ augroup whitespace_group
   autocmd FileType python                       setlocal sts=4 ts=4 shiftwidth=4 textwidth=79
   autocmd FileType c                            setlocal et sw=2 sts=2
   autocmd FileType objc,objcpp                  setlocal et sw=4 sts=4
-
-  autocmd FileType markdown                     setlocal linebreak formatoptions=1 breakat=\ @-+;:,./?^I
 augroup END
 " }}}
 
