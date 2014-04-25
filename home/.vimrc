@@ -330,7 +330,7 @@ nmap <leader>f9 :set foldlevel=9<cr>
 " Markdown {{{
 augroup markdown
   autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=markdown
-  autocmd FileType markdown setlocal formatoptions+=tcroqwanl formatoptions-=j comments=b:*,b:+,b:-
+  autocmd FileType markdown setlocal formatoptions+=troqwnl formatoptions-=caj comments=b:*,b:+,b:-
 augroup END
 " }}}
 
