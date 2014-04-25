@@ -60,6 +60,7 @@
 "=bundle rizzatti/greper.vim
 "=bundle rizzatti/dash.vim
 "=bundle tpope/vim-markdown
+"=bundle godlygeek/tabular
 "=bundle itspriddle/vim-marked
 "=bundle evanmiller/nginx-vim-syntax
 " }}}
