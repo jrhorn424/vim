@@ -21,20 +21,14 @@
 "=bundle Shougo/neosnippet.vim
 "=bundle Shougo/neosnippet-snippets
 "=bundle Shougo/vimproc.vim
-"=bundle Lokaltog/vim-easymotion
 "=bundle vim-scripts/restore_view.vim
-"=bundle chrisbra/Recover.vim
 "=bundle ton/vim-bufsurf
 "=bundle jeetsukumaran/vim-buffergator
-"=bundle AndrewRadev/splitjoin.vim
 "=bundle vim-scripts/YankRing.vim
 "=bundle airblade/vim-gitgutter
 "=bundle csexton/trailertrash.vim
 "=bundle christoomey/vim-tmux-navigator
-"=bundle wesQ3/vim-windowswap
 "=bundle wellle/targets.vim
-"=bundle jrhorn424/vim-multiple-cursors
-"=bundle junegunn/vim-easy-align
 "=bundle Townk/vim-autoclose
 "=bundle scrooloose/syntastic
 "=bundle vim-scripts/visualrepeat
@@ -167,27 +161,6 @@ if isdirectory(g:bundle_dir)
   runtime bundle/vim-pathogen/autoload/pathogen.vim
   execute pathogen#infect()
 
-  " Easymotion {{{
-  nmap s <plug>(easymotion-s2)
-  nmap t <plug>(easymotion-t2)
-  map  / <plug>(easymotion-sn)
-  omap / <plug>(easymotion-tn)
-  map  n <plug>(easymotion-next)
-  map  N <plug>(easymotion-prev)
-  map <leader>h <plug>(easymotion-lineforward)
-  map <leader>j <plug>(easymotion-j)
-  map <leader>k <plug>(easymotion-k)
-  map <leader>l <plug>(easymotion-linebackward)
-  let g:EasyMotion_use_upper = 1
-  let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-  let g:EasyMotion_smartcase = 1
-  let g:EasyMotion_use_smartsign_us = 1
-  let g:EasyMotion_do_shade = 0
-  let g:EasyMotion_enter_jump_first = 1
-  let g:EasyMotion_prompt = '{n}>>> '
-  let g:EasyMotion_landing_highlight = 1
-  " }}}
-
   " neocomplete {{{
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
@@ -248,13 +221,6 @@ if isdirectory(g:bundle_dir)
   nmap <silent> <leader>d <Plug>DashSearch
   " when testing, call Focus and enter your command, then use this map to re-run tests
   nnoremap <F8> :Dispatch<cr>
-
-  vmap <Enter> <plug>(EasyAlign)
-
-  let g:splitjoin_split_mapping = ''
-  let g:splitjoin_join_mapping = ''
-  nmap sj :SplitjoinSplit<cr>
-  nmap sk :SplitjoinJoin<cr>
 
   let g:surround_{char2nr('s')} = " \r"
   let g:surround_{char2nr(':')} = ":\r"
