@@ -280,8 +280,6 @@ nmap <leader>hr :%s/:\([^=,'"]*\) =>/\1:/gc"'<cr>
 nmap <leader>-% :%s/[^-]%>/ -%>/gc<cr>
 " convert beginning erb tags to <%-
 nmap <leader>%- :%s/<%[^-]\ /<%-/gc<cr>
-" easy repitition of last edit; faster than multiple cursors
-nmap <leader>o *Ncgn
 
 " buffer nav
 nmap <leader>c :bp<bar>sp<bar>bn<bar>bd<cr>
