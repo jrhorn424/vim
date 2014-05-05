@@ -300,7 +300,7 @@ nmap <leader>hr :%s/:\([^=,'"]*\) =>/\1:/gc"'<cr>
 " convert end erb tags to -%>
 nmap <leader>-% :%s/[^-]%>/ -%>/gc<cr>
 " convert beginning erb tags to <%-
-nmap <leader>%- :%s/<%[^-]\ /<%-/gc<cr>
+nmap <leader>%- :%s/<%[^-=]/<%-\ /gc<cr>
 
 " buffer nav
 nmap <leader>c :bp<bar>sp<bar>bn<bar>bd<cr>
