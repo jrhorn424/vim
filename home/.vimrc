@@ -164,7 +164,7 @@ augroup helpnav
   autocmd!
   autocmd filetype help nnoremap <buffer><cr> <c-]>
   autocmd filetype help nnoremap <buffer><bs> <c-T>
-  autocmd filetype help nnoremap <buffer>q :q<CR>
+  autocmd filetype help nnoremap <buffer>q :q<cr>
 augroup END
 " }}}
 
@@ -190,12 +190,12 @@ if isdirectory(g:bundle_dir)
   inoremap <expr><C-l>     neocomplete#complete_common_string()
 
   " Recommended key-mappings.
-  " <CR>: close popup and save indent.
-  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  " <cr>: close popup and save indent.
+  inoremap <silent> <cr> <C-r>=<SID>my_cr_function()<cr>
   function! s:my_cr_function()
-    return neocomplete#close_popup() . "\<CR>"
-    " For no inserting <CR> key.
-    " return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    return neocomplete#close_popup() . "\<cr>"
+    " For no inserting <cr> key.
+    " return pumvisible() ? neocomplete#close_popup() : "\<cr>"
   endfunction
   " <TAB>: completion.
   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
