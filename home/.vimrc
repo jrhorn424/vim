@@ -154,6 +154,15 @@ highlight clear SignColumn
 syntax on
 " }}}
 
+" Help Navigation {{{
+augroup helpnav
+  autocmd!
+  autocmd filetype help nnoremap <buffer><cr> <c-]>
+  autocmd filetype help nnoremap <buffer><bs> <c-T>
+  autocmd filetype help nnoremap <buffer>q :q<CR>
+augroup END
+" }}}
+
 " Pathogen bundle settings {{{
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
 if isdirectory(g:bundle_dir)
