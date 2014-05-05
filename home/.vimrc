@@ -235,6 +235,7 @@ if isdirectory(g:bundle_dir)
   nmap <silent> <leader>d <Plug>DashSearch
   " when testing, call Focus and enter your command, then use this map to re-run tests
   nnoremap <F8> :Dispatch<cr>
+  nnoremap <leader>d :Dispatch
 
   let g:surround_{char2nr('s')} = " \r"
   let g:surround_{char2nr(':')} = ":\r"
