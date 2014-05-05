@@ -21,6 +21,7 @@
 "=bundle Shougo/neosnippet.vim
 "=bundle Shougo/neosnippet-snippets
 "=bundle Shougo/vimproc.vim
+"=bundle sjl/vitality.vim
 "=bundle vim-scripts/restore_view.vim
 "=bundle ton/vim-bufsurf
 "=bundle jeetsukumaran/vim-buffergator
@@ -152,11 +153,6 @@ set t_Co=256
 set background=dark
 highlight clear SignColumn
 syntax on
-
-" Change cursor shape to an underscore  when in insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-" Change back to a block in normal mode
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " }}}
 
 " Help Navigation {{{
