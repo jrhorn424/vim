@@ -44,6 +44,9 @@
 "=bundle slim-template/vim-slim
 "=bundle tpope/vim-haml                 " for scss
 "=bundle othree/html5.vim
+"=bundle jelera/vim-javascript-syntax
+"=bundle pangloss/vim-javascript
+"=bundle nathanaelkane/vim-indent-guides
 "=bundle tpope/vim-fugitive
 "=bundle jaxbot/github-issues.vim
 "=bundle rizzatti/funcoo.vim
