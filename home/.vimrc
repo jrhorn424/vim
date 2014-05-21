@@ -46,6 +46,7 @@
 "=bundle itspriddle/vim-marked
 "=bundle evanmiller/nginx-vim-syntax
 "=bundle Shougo/unite.vim
+"=bundle Shougo/unite-outline
 "=bundle Shougo/neomru.vim
 "=bundle Shougo/vimproc.vim
 "=bundle vim-scripts/restore_view.vim
@@ -199,6 +200,11 @@ if isdirectory(g:bundle_dir)
 
   " Unite {{{
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+  " restrict mru to current directory
+  call unite#custom#source(
+        \ 'neomru/file', 'matchers',
+        \ ['matcher_project_files', 'matcher_fuzzy'])
   let g:unite_data_directory='~/.vim/unite'
   let g:unite_source_history_yank_enable=1
   let g:unite_source_rec_max_cache_files=1000
