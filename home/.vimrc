@@ -17,15 +17,7 @@
 "=bundle tpope/vim-endwise
 "=bundle tpope/vim-dispatch
 "=bundle tpope/vim-vinegar
-"=bundle Shougo/neocomplete.vim
-"=bundle Shougo/neosnippet.vim
-"=bundle Shougo/neosnippet-snippets
-"=bundle Shougo/vimproc.vim
 "=bundle sjl/vitality.vim
-"=bundle vim-scripts/restore_view.vim
-"=bundle jeetsukumaran/vim-buffergator
-"=bundle vim-scripts/YankRing.vim
-"=bundle airblade/vim-gitgutter
 "=bundle csexton/trailertrash.vim
 "=bundle christoomey/vim-tmux-navigator
 "=bundle wellle/targets.vim
@@ -35,7 +27,6 @@
 "=bundle scrooloose/syntastic
 "=bundle vim-scripts/visualrepeat
 "=bundle altercation/vim-colors-solarized
-"=bundle wincent/Command-T
 "=bundle tpope/vim-rails
 "=bundle tpope/vim-bundler
 "=bundle tpope/vim-rake
@@ -48,17 +39,19 @@
 "=bundle pangloss/vim-javascript
 "=bundle nathanaelkane/vim-indent-guides
 "=bundle tpope/vim-fugitive
-"=bundle jaxbot/github-issues.vim
-"=bundle rizzatti/funcoo.vim
-"=bundle rizzatti/greper.vim
-"=bundle rizzatti/dash.vim
+"=bundle gregsexton/gitv
+"=bundle airblade/vim-gitgutter
 "=bundle tpope/vim-markdown
 "=bundle godlygeek/tabular
 "=bundle itspriddle/vim-marked
 "=bundle evanmiller/nginx-vim-syntax
+"=bundle Shougo/unite.vim
+"=bundle Shougo/neomru.vim
+"=bundle Shougo/vimproc.vim
+"=bundle vim-scripts/restore_view.vim
+"=bundle edsono/vim-matchit
+"=bundle justinmk/vim-sneak
 " }}}
-"
-" After installing or updating these bundles, recompile `vimproc.vim`.
 
 set nocompatible
 set encoding=utf-8
@@ -101,6 +94,7 @@ set softtabstop=2
 set shiftwidth=2
 set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " don't forget trailing whitespace after tab character
 set viewoptions=cursor,folds,slash,unix
+set lazyredraw
 
 " Wildmenu {{{
 set wildmenu
@@ -127,8 +121,11 @@ set wildignore+=app/assets/fonts
 " don't highlight lines or columns, only highlight lines in insert mode
 set nocursorline
 set nocursorcolumn
-au InsertEnter * setlocal cursorline
-au InsertLeave * setlocal nocursorline
+augroup highlighting
+  autocmd!
+  autocmd InsertEnter * setlocal cursorline
+  autocmd InsertLeave * setlocal nocursorline
+augroup END
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
 noremap k gk
@@ -151,6 +148,7 @@ set t_Co=256
 set background=dark
 highlight clear SignColumn
 syntax on
+syntax sync minlines=256
 " }}}
 
 " Help Navigation {{{
@@ -162,6 +160,24 @@ augroup helpnav
 augroup END
 " }}}
 
+" Grep {{{
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  "let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+" }}}
+
 " Pathogen bundle settings {{{
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
 if isdirectory(g:bundle_dir)
@@ -169,64 +185,57 @@ if isdirectory(g:bundle_dir)
   runtime bundle/vim-pathogen/autoload/pathogen.vim
   execute pathogen#infect()
 
-  " neocomplete {{{
-  " Disable AutoComplPop.
-  let g:acp_enableAtStartup = 0
-  " Use neocomplete.
-  let g:neocomplete#enable_at_startup = 1
-  " Use smartcase.
-  let g:neocomplete#enable_smart_case = 1
-  " Set minimum syntax keyword length.
-  let g:neocomplete#sources#syntax#min_keyword_length = 2
-
-  " Plugin key-mappings.
-  inoremap <expr><C-g>     neocomplete#undo_completion()
-  inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-  " Recommended key-mappings.
-  " <cr>: close popup and save indent.
-  inoremap <silent> <cr> <C-r>=<SID>my_cr_function()<cr>
-  function! s:my_cr_function()
-    return neocomplete#close_popup() . "\<cr>"
-    " For no inserting <cr> key.
-    " return pumvisible() ? neocomplete#close_popup() : "\<cr>"
-  endfunction
-  " <TAB>: completion.
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><C-y>  neocomplete#close_popup()
-  inoremap <expr><C-e>  neocomplete#cancel_popup()
-  " Close popup by <Space>.
-  inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-  " AutoComplPop like behavior.
-  let g:neocomplete#enable_auto_select = 1
-  " }}}
-
-  " neosnippet {{{
-  " Plugin key-mappings.
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-  " For snippet_complete marker.
-  if has('conceal')
-    set conceallevel=2 concealcursor=i
-  endif
-  " }}}
-
-  let g:github_access_token = "384c8c78a64ec0868a2d5b06ea22ef8c7c9492d3"
-  let g:github_upstream_issues = 1
-
   augroup trailertrash
-    autocmd BufWritePre * if index(['markdown', 'vim'], &ft) < 0 | :Trim
+    autocmd!
+    autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git'], &ft) < 0 | :Trim
   augroup END
 
-  nmap <leader>y :YRShow<cr>
-  nmap <silent> <leader>a <Plug>GreperBangWord
-  nmap <silent> <leader>d <Plug>DashSearch
+  " Git {{{
+    nmap <leader>gv :Gitv --all<cr>
+    nmap <leader>gV :Gitv! --all<cr>
+    vmap <leader>gV :Gitv! --all<cr>
+    cabbrev git Git
+ " }}}
+
+  " Unite {{{
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  let g:unite_data_directory='~/.vim/unite'
+  let g:unite_source_history_yank_enable=1
+  let g:unite_source_rec_max_cache_files=100
+  let g:unite_prompt='» '
+  let g:unite_split_rule='botright'
+
+  nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+  nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+  nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+  nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+  nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+  nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+  nnoremap <leader>l :<C-u>Unite -no-split -buffer-name=line    line<cr>
+  nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=search -no-quit grep:<cr>
+  nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mappings mapping<cr>
+  nnoremap <leader>s :<C-u>Unite -no-split -quick-match buffer<cr>
+
+  if executable('ag')
+    let g:unite_source_grep_command='ag'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C1'
+    let g:unite_source_grep_recursive_opt=''
+  endif
+
+  " Unite buffer options
+  augroup unite_options
+    autocmd!
+    autocmd FileType unite call s:unite_settings()
+  augroup END
+  function! s:unite_settings()
+    " Enable navigation with control-j and control-k in insert mode
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    nmap <buffer> Q <plug>(unite_exit)
+    nmap <buffer> <esc> <plug>(unite_exit)
+    imap <buffer> <esc> <plug>(unite_exit)
+  endfunction
+  " }}}
 
   " Dispatch {{{
   " when testing, call Focus and enter your command, then use this map to re-run tests
@@ -258,22 +267,6 @@ if isdirectory(g:bundle_dir)
   nnoremap <leader>gl :Git log --decorate --oneline --graph --all<cr>
   nnoremap <leader>g :Git<space>
   " }}}
-
-  " CommandT autoupdate {{{
-  augroup commandt_group
-    autocmd!
-    autocmd FocusGained * CommandTFlush
-    autocmd BufWritePost * CommandTFlush
-  augroup END
-  " }}}
-
-  let g:yankring_replace_n_pkey = '<m-p>'
-  let g:yankring_replace_n_nkey = '<m-n>'
-  let g:yankring_history_dir = '$HOME/.vim'
-
-  let g:buffergator_viewport_split_policy = "B"
-  let g:buffergator_suppress_keymaps = 1
-  nmap <leader>b :BuffergatorToggle<cr>
 
   let g:ruby_indent_access_modifier_style = 'outdent'
 
@@ -311,9 +304,22 @@ nmap <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<c
 " }}}
 
 " Completion {{{
-" set completefunc=syntaxcomplete#Complete
-" Omnicomplete settings {{{
+" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+" http://vim.wikia.com/wiki/Improve_completion_popup_menu
+" http://robots.thoughtbot.com/vim-you-complete-me
+set complete=.,b,u,]
+set completeopt=longest,menuone " choose longest common match
+set completefunc=syntaxcomplete#Complete
+inoremap <expr> <C-cr> pumvisible() ? '<C-y>' : '<cr>'
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<cr>'
+inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
+  \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<cr>'
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<cr>'
+
 augroup omnicomplete_group
+  autocmd!
   autocmd FileType css             setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript      setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -326,7 +332,6 @@ augroup omnicomplete_group
   autocmd FileType ruby,eruby let g:rubycomplete_include_object = 1
   autocmd FileType ruby,eruby let g:rubycomplete_include_objectspace = 1
 augroup END
-" }}}
 " }}}
 
 " Folding {{{
@@ -348,8 +353,13 @@ nmap <leader>f8 :set foldlevel=8<cr>
 nmap <leader>f9 :set foldlevel=9<cr>
 " }}}
 
+" Ruby {{{
+let g:ruby_path = $RUBY_ROOT
+" }}}
+
 " Markdown {{{
 augroup markdown
+  autocmd!
   autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=markdown
   autocmd FileType markdown setlocal formatoptions+=troqwnl formatoptions-=caj comments=b:*,b:+,b:-
 augroup END
@@ -416,6 +426,7 @@ endif
 
 " Whitespace settings for different filetypes {{{
 augroup whitespace_group
+  autocmd!
   autocmd FileType javascript,coffee            setlocal et sw=2 sts=2 isk+=$
   autocmd FileType html,xhtml,css,scss,scss.css setlocal et sw=2 sts=2 isk+=-
   autocmd FileType eruby,yaml,ruby              setlocal et sw=2 sts=2
@@ -482,8 +493,13 @@ set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 set laststatus=2
 
-"recalculate the trailing whitespace warning when idle, and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+augroup status_line
+  autocmd!
+  "recalculate the trailing whitespace warning when idle, and after saving
+  autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+  "recalculate the tab warning flag when idle and after writing
+  autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
+augroup END
 
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
@@ -504,7 +520,6 @@ function! StatuslineTrailingSpaceWarning()
   return b:statusline_trailing_space_warning
 endfunction
 
-
 "return the syntax highlight group under the cursor ''
 function! StatuslineCurrentHighlight()
   let name = synIDattr(synID(line('.'),col('.'),1),'name')
@@ -514,9 +529,6 @@ function! StatuslineCurrentHighlight()
     return '[' . name . ']'
   endif
 endfunction
-
-"recalculate the tab warning flag when idle and after writing
-autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
 
 "return '[&et]' if &et is set wrong
 "return '[mixed-indenting]' if spaces and tabs are used to indent
