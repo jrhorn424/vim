@@ -215,6 +215,7 @@ if isdirectory(g:bundle_dir)
   nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=search -no-quit grep:<cr>
   nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mappings mapping<cr>
   nnoremap <leader>s :<C-u>Unite -no-split -quick-match buffer<cr>
+  nnoremap <silent><leader>n :Unite -silent -auto-resize grep:%::TODO\:\|FIXME\:\|NOTE\:<CR>
 
   if executable('ag')
     let g:unite_source_grep_command='ag'
