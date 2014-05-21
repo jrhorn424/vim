@@ -201,7 +201,7 @@ if isdirectory(g:bundle_dir)
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   let g:unite_data_directory='~/.vim/unite'
   let g:unite_source_history_yank_enable=1
-  let g:unite_source_rec_max_cache_files=100
+  let g:unite_source_rec_max_cache_files=1000
   let g:unite_prompt='» '
   let g:unite_split_rule='botright'
 
