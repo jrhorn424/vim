@@ -295,8 +295,6 @@ nmap <leader>%- :%s/<%[^-=]/<%-\ /gc<cr>
 
 " buffer nav
 nmap <leader>c :bp<bar>sp<bar>bn<bar>bd<cr>
-nmap <leader>n :BufSurfForward<cr>
-nmap <leader>p :BufSurfBack<cr>
 
 " Map <leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
