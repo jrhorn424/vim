@@ -52,6 +52,7 @@
 "=bundle vim-scripts/restore_view.vim
 "=bundle edsono/vim-matchit
 "=bundle justinmk/vim-sneak
+"=bundle vim-scripts/dbext.vim
 " }}}
 
 set nocompatible
@@ -202,30 +203,27 @@ if isdirectory(g:bundle_dir)
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   call unite#filters#sorter_default#use(['sorter_rank'])
   " restrict mru to current directory
-  call unite#custom#source(
-        \ 'neomru/file', 'matchers',
-        \ ['matcher_project_files', 'matcher_fuzzy'])
+  call unite#custom#source('grep', 'max_candidates', 0)
+
   let g:unite_data_directory='~/.vim/unite'
-  let g:unite_source_history_yank_enable=1
-  let g:unite_source_rec_max_cache_files=1000
+  let g:unite_source_rec_max_cache_files=5000
   let g:unite_prompt='» '
-  let g:unite_split_rule='botright'
+  let g:unite_split_rule='topleft'
 
   nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
   nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
   nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
   nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-  nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
   nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
   nnoremap <leader>l :<C-u>Unite -no-split -buffer-name=line    line<cr>
-  nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=search -no-quit grep:<cr>
+  nnoremap <leader>/ :<C-u>Unite -no-quit  -buffer-name=search  grep:<cr>
   nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mappings mapping<cr>
   nnoremap <leader>s :<C-u>Unite -no-split -quick-match buffer<cr>
-  nnoremap <silent><leader>n :Unite -silent -auto-resize grep:%::TODO\:\|FIXME\:\|NOTE\:<CR>
+  nnoremap <silent><leader>n :Unite -silent -auto-resize grep:%::TODO\:\|FIXME\:\|NOTE\:<cr>
 
   if executable('ag')
     let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C1'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup --line-numbers --context=0'
     let g:unite_source_grep_recursive_opt=''
     let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
   endif
@@ -237,11 +235,10 @@ if isdirectory(g:bundle_dir)
   augroup END
   function! s:unite_settings()
     " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-    nmap <buffer> Q <plug>(unite_exit)
-    nmap <buffer> <esc> <plug>(unite_exit)
-    imap <buffer> <esc> <plug>(unite_exit)
+    imap <buffer> <C-j>   <plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <plug>(unite_select_previous_line)
+    nmap <buffer> Q       <plug>(unite_exit)
+    nmap <buffer> <esc>   <plug>(unite_exit)
   endfunction
   " }}}
 
