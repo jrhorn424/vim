@@ -50,9 +50,11 @@
 "=bundle Shougo/neomru.vim
 "=bundle Shougo/vimproc.vim
 "=bundle vim-scripts/restore_view.vim
-"=bundle edsono/vim-matchit
 "=bundle justinmk/vim-sneak
 "=bundle vim-scripts/dbext.vim
+"=bundle vim-scripts/SearchComplete
+"=bundle vim-scripts/taglist.vim
+"=bundle vim-scripts/SQLComplete.vim
 " }}}
 
 set nocompatible
@@ -191,6 +193,8 @@ if isdirectory(g:bundle_dir)
     autocmd!
     autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git'], &ft) < 0 | :Trim
   augroup END
+
+  nnoremap <silent> <F7> :TlistToggle<cr>
 
   " Git {{{
     nmap <leader>gv :Gitv --all<cr>
