@@ -55,6 +55,7 @@
 "=bundle vim-scripts/SearchComplete
 "=bundle vim-scripts/taglist.vim
 "=bundle vim-scripts/SQLComplete.vim
+"=bundle kchmck/vim-coffee-script
 " }}}
 
 set nocompatible
