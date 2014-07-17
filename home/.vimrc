@@ -149,7 +149,6 @@ set tags+=./tags
 " }}}
 
 " Generic look {{{
-set t_Co=256
 set background=dark
 highlight clear SignColumn
 syntax enable
