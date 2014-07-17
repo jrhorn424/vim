@@ -285,6 +285,13 @@ if isdirectory(g:bundle_dir)
   " let g:solarized_termtrans=1
   call togglebg#map("<F5>")
 
+  if has('gui_running')
+    set showtabline=2
+    set background=light
+  else
+    set background=dark
+  endif
+
   colorscheme solarized
   highlight clear SignColumn " must appear after colorscheme
   " }}}
