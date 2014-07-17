@@ -152,7 +152,7 @@ set tags+=./tags
 set t_Co=256
 set background=dark
 highlight clear SignColumn
-syntax on
+syntax enable
 syntax sync minlines=256
 " }}}
 
