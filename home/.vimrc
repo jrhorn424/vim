@@ -282,7 +282,8 @@ if isdirectory(g:bundle_dir)
 
   let g:solarized_termtrans = 1
   colorscheme solarized
-  highlight clear SignColumn
+  highlight clear SignColumn " must appear after colorscheme
+  " }}}
 endif
 
 " This has to come after pathogen
