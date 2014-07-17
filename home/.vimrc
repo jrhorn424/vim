@@ -278,8 +278,13 @@ if isdirectory(g:bundle_dir)
   " }}}
 
   let g:ruby_indent_access_modifier_style = 'outdent'
+  " Colors {{{
 
-  let g:solarized_termtrans = 1
+  " Required for uxrvt and Terminal.app but conflicts with toggling
+  " background.
+  " let g:solarized_termtrans=1
+  call togglebg#map("<F5>")
+
   colorscheme solarized
   highlight clear SignColumn " must appear after colorscheme
   " }}}
