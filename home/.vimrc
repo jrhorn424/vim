@@ -56,6 +56,8 @@
 "=bundle vim-scripts/taglist.vim
 "=bundle vim-scripts/SQLComplete.vim
 "=bundle kchmck/vim-coffee-script
+"=bundle mtth/scratch.vim
+"=bundle chrisbra/NrrwRgn
 " }}}
 
 set nocompatible
@@ -383,19 +385,6 @@ augroup markdown
   autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=markdown
   autocmd FileType markdown setlocal formatoptions+=troqwnl formatoptions-=caj comments=b:*,b:+,b:-
 augroup END
-" }}}
-
-" Scratch buffers {{{
-function! ScratchEdit(cmd, options)
-  exe a:cmd tempname()
-  setl buftype=nofile bufhidden=wipe nobuflisted
-  if !empty(a:options) | exe 'setl' a:options | endif
-endfunction
-
-command! -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
-command! -bar -nargs=* Ssplit call ScratchEdit('split', <q-args>)
-command! -bar -nargs=* Svsplit call ScratchEdit('vsplit', <q-args>)
-command! -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
 " }}}
 
 " Paranoia {{{
