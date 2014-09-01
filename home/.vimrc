@@ -58,6 +58,7 @@
 "=bundle kchmck/vim-coffee-script
 "=bundle mtth/scratch.vim
 "=bundle chrisbra/NrrwRgn
+"=bundle szw/vim-tags
 " }}}
 
 set nocompatible
@@ -212,7 +213,7 @@ if isdirectory(g:bundle_dir)
   call unite#custom#source('grep', 'max_candidates', 0)
 
   let g:unite_data_directory='~/.vim/unite'
-  let g:unite_source_rec_max_cache_files=5000
+  let g:unite_source_rec_max_cache_files=10000
   let g:unite_prompt='» '
   let g:unite_split_rule='topleft'
 
