@@ -194,7 +194,7 @@ if isdirectory(g:bundle_dir)
 
   augroup trailertrash
     autocmd!
-    autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git'], &ft) < 0 | :Trim
+    autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git'], &ft) < 0 | :TrailerTrim
   augroup END
 
   nnoremap <silent> <F7> :TlistToggle<cr>
