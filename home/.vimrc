@@ -59,6 +59,7 @@
 "=bundle mtth/scratch.vim
 "=bundle chrisbra/NrrwRgn
 "=bundle szw/vim-tags
+"=bundle freitass/todo.txt-vim
 " }}}
 
 set nocompatible
