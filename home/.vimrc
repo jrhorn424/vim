@@ -234,7 +234,6 @@ if isdirectory(g:bundle_dir)
   " nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
   nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-  nnoremap <leader>l :<C-u>Unite -no-split -buffer-name=line    line<cr>
   nnoremap <leader>/ :<C-u>Unite -no-quit  -buffer-name=search  grep:<cr>
   nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mappings mapping<cr>
   " nnoremap <leader>s :<C-u>Unite -no-split -quick-match buffer<cr>
