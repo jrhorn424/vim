@@ -75,6 +75,10 @@ inoremap <C-c> <Esc>
 let mapleader = "\<space>"
 nnoremap ; :
 
+" Use Q for formatting the current paragraph (or selection)
+vmap Q gq
+nmap Q gqap
+
 set eol                         " include a newline at the end of files
 set autoread                    " automatically re-read changed files from disk if no pending writes
 set history=1000
