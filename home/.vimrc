@@ -39,7 +39,6 @@
 "=bundle othree/html5.vim
 "=bundle jelera/vim-javascript-syntax
 "=bundle pangloss/vim-javascript
-"=bundle nathanaelkane/vim-indent-guides
 "=bundle tpope/vim-fugitive
 "=bundle gregsexton/gitv
 "=bundle airblade/vim-gitgutter
@@ -57,10 +56,7 @@
 "=bundle vim-scripts/taglist.vim
 "=bundle vim-scripts/SQLComplete.vim
 "=bundle kchmck/vim-coffee-script
-"=bundle mtth/scratch.vim
-"=bundle chrisbra/NrrwRgn
 "=bundle szw/vim-tags
-"=bundle freitass/todo.txt-vim
 " }}}
 
 set nocompatible
@@ -250,19 +246,6 @@ if isdirectory(g:bundle_dir)
     nmap <buffer> <esc>   <plug>(unite_exit)
   endfunction
   " }}}
-
-  " Dispatch {{{
-  " when testing, call Focus and enter your command, then use this map to re-run tests
-  nnoremap <F8> :Dispatch<cr>
-  nnoremap <leader>d :Dispatch
-  " Test runners
-  map <leader>rr :Dispatch bundle exec rake test TEST=%<cr>
-  map <leader>ra :Dispatch bundle exec rake test<cr>
-  map <leader>rm :Dispatch bundle exec rake test:units<cr>
-  map <leader>rc :Dispatch bundle exec rake test:functionals<cr>
-  map <leader>rv :Dispatch bundle exec rake test:integration<cr>
-  map <leader>ru :Dispatch bundle exec rake test:uncommitted<cr>
-  "}}}
 
   let g:surround_{char2nr('s')} = " \r"
   let g:surround_{char2nr(':')} = ":\r"
