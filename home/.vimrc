@@ -6,17 +6,21 @@
 " These require pathogen. Use csexton/infect to install.
 " Pathogen bundle manifest {{{
 "=bundle tpope/vim-pathogen
-"=bundle tpope/vim-unimpaired
-"=bundle tpope/vim-eunuch
 "=bundle tpope/vim-ragtag
 "=bundle tpope/vim-surround
 "=bundle tpope/vim-repeat
 "=bundle tpope/vim-commentary
 "=bundle tpope/vim-abolish
 "=bundle tpope/vim-sensible
+"=bundle tpope/vim-scriptease
 "=bundle tpope/vim-endwise
-"=bundle tpope/vim-dispatch
 "=bundle tpope/vim-vinegar
+"=bundle tpope/vim-unimpaired
+"=bundle tpope/vim-eunuch
+"=bundle tpope/vim-rake
+"=bundle tpope/vim-markdown
+"=bundle tpope/vim-dispatch
+"=bundle tpope/vim-bundler
 "=bundle sjl/vitality.vim
 "=bundle csexton/trailertrash.vim
 "=bundle christoomey/vim-tmux-navigator
@@ -28,8 +32,6 @@
 "=bundle vim-scripts/visualrepeat
 "=bundle altercation/vim-colors-solarized
 "=bundle tpope/vim-rails
-"=bundle tpope/vim-bundler
-"=bundle tpope/vim-rake
 "=bundle vim-ruby/vim-ruby
 "=bundle sunaku/vim-ruby-minitest
 "=bundle slim-template/vim-slim
@@ -41,7 +43,6 @@
 "=bundle tpope/vim-fugitive
 "=bundle gregsexton/gitv
 "=bundle airblade/vim-gitgutter
-"=bundle tpope/vim-markdown
 "=bundle godlygeek/tabular
 "=bundle itspriddle/vim-marked
 "=bundle evanmiller/nginx-vim-syntax
