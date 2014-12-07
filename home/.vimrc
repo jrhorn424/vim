@@ -79,6 +79,10 @@ nnoremap ; :
 vmap Q gq
 nmap Q gqap
 
+" Turn on per-project vimrc files, but disable unsafe commands in them
+set exrc
+set secure
+
 set eol                         " include a newline at the end of files
 set autoread                    " automatically re-read changed files from disk if no pending writes
 set history=1000
