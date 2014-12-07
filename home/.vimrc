@@ -65,6 +65,7 @@
 "=bundle vim-scripts/SQLComplete.vim
 "=bundle kchmck/vim-coffee-script
 "=bundle szw/vim-tags
+"=bundle milkypostman/vim-togglelist
 "=bundle kikijump/tslime.vim
 "=bundle benmills/vimux
 " }}}
