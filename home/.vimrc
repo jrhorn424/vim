@@ -274,6 +274,10 @@ if isdirectory(g:bundle_dir)
   nmap <Leader>a <Plug>(EasyAlign)
   " }}}
 
+  " Syntastic {{{
+  let g:syntastic_javascript_checkers = ['jshint']
+  " }}}
+
 
   " Git mappings {{{
   nnoremap <leader>gb :Gblame<cr>
