@@ -50,7 +50,7 @@
 "=bundle tpope/vim-fugitive
 "=bundle gregsexton/gitv
 "=bundle airblade/vim-gitgutter
-"=bundle godlygeek/tabular
+"=bundle junegunn/vim-easy-align
 "=bundle itspriddle/vim-marked
 "=bundle evanmiller/nginx-vim-syntax
 "=bundle Shougo/unite.vim
@@ -259,6 +259,14 @@ if isdirectory(g:bundle_dir)
   let g:surround_{char2nr('s')} = " \r"
   let g:surround_{char2nr(':')} = ":\r"
   let g:surround_indent = 1
+  " EasyAlign {{{
+  " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+  vmap <Enter> <Plug>(EasyAlign)
+
+  " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+  nmap <Leader>a <Plug>(EasyAlign)
+  " }}}
+
 
   " Git mappings {{{
   nnoremap <leader>gb :Gblame<cr>
