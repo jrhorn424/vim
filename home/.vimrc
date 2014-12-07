@@ -68,6 +68,7 @@
 "=bundle milkypostman/vim-togglelist
 "=bundle kikijump/tslime.vim
 "=bundle benmills/vimux
+"=bundle thoughtbot/vim-rspec
 " }}}
 
 set nocompatible
