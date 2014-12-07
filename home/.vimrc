@@ -212,11 +212,11 @@ if isdirectory(g:bundle_dir)
   nnoremap <silent> <F7> :TlistToggle<cr>
 
   " Git {{{
-    nmap <leader>gv :Gitv --all<cr>
-    nmap <leader>gV :Gitv! --all<cr>
-    vmap <leader>gV :Gitv! --all<cr>
-    cabbrev git Git
- " }}}
+  nmap <leader>gv :Gitv --all<cr>
+  nmap <leader>gV :Gitv! --all<cr>
+  vmap <leader>gV :Gitv! --all<cr>
+  cabbrev git Git
+  " }}}
 
   " Unite {{{
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -230,15 +230,15 @@ if isdirectory(g:bundle_dir)
   let g:unite_split_rule='topleft'
 
   nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-  nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+  " nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+  " nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
   nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
   nnoremap <leader>l :<C-u>Unite -no-split -buffer-name=line    line<cr>
   nnoremap <leader>/ :<C-u>Unite -no-quit  -buffer-name=search  grep:<cr>
   nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mappings mapping<cr>
-  nnoremap <leader>s :<C-u>Unite -no-split -quick-match buffer<cr>
-  nnoremap <silent><leader>n :Unite -silent -auto-resize grep:%::TODO\:\|FIXME\:\|NOTE\:<cr>
+  " nnoremap <leader>s :<C-u>Unite -no-split -quick-match buffer<cr>
+  " nnoremap <silent><leader>n :Unite -silent -auto-resize grep:%::TODO\:\|FIXME\:\|NOTE\:<cr>
 
   if executable('ag')
     let g:unite_source_grep_command='ag'
@@ -261,9 +261,12 @@ if isdirectory(g:bundle_dir)
   endfunction
   " }}}
 
+  " surrounded {{{
   let g:surround_{char2nr('s')} = " \r"
   let g:surround_{char2nr(':')} = ":\r"
   let g:surround_indent = 1
+  " }}}
+
   " EasyAlign {{{
   " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
   vmap <Enter> <Plug>(EasyAlign)
@@ -288,8 +291,8 @@ if isdirectory(g:bundle_dir)
   " }}}
 
   let g:ruby_indent_access_modifier_style = 'outdent'
-  " Colors {{{
 
+  " Colors {{{
   " Required for uxrvt and Terminal.app but conflicts with toggling
   " background.
   " let g:solarized_termtrans=1
@@ -342,11 +345,11 @@ set completeopt=longest,menuone " choose longest common match
 set completefunc=syntaxcomplete#Complete
 inoremap <expr> <C-cr> pumvisible() ? '<C-y>' : '<cr>'
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<cr>'
+      \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<cr>'
 inoremap <expr> <C-p> pumvisible() ? '<C-p>' :
-  \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<cr>'
+      \ '<C-p><C-r>=pumvisible() ? "\<lt>Up>" : ""<cr>'
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<cr>'
+      \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<cr>'
 
 augroup omnicomplete_group
   autocmd!
