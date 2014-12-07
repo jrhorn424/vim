@@ -65,6 +65,8 @@
 "=bundle vim-scripts/SQLComplete.vim
 "=bundle kchmck/vim-coffee-script
 "=bundle szw/vim-tags
+"=bundle kikijump/tslime.vim
+"=bundle benmills/vimux
 " }}}
 
 set nocompatible
@@ -278,6 +280,21 @@ if isdirectory(g:bundle_dir)
   let g:syntastic_javascript_checkers = ['jshint']
   " }}}
 
+  " Vimux mappings {{{
+  " Run last command executed by VimuxRunCommand
+  map <leader>vl :wa<CR> :VimuxRunLastCommand<CR>
+  map <leader>vi :wa<CR> :VimuxInspectRunner<CR>
+  map <leader>vk :wa<CR> :VimuxInterruptRunner<CR>
+  map <leader>vx :wa<CR> :VimuxClosePanes<CR>
+  " Prompt for a command to run
+  map <leader>vp :VimuxPromptCommand<CR>
+  " Close vim tmux runner opened by VimuxRunCommand
+  map <Leader>vq :VimuxCloseRunner<CR>
+  vmap <leader>vs "vy :call VimuxRunCommand(@v)<CR>
+  nmap <leader>vs vip<LocalLeader>vs<CR>"
+  " Zoom the runner pane (use <bind-key> z to restore runner pane)
+  map <Leader>vz :call VimuxZoomRunner()<CR>
+  " }}}
 
   " Git mappings {{{
   nnoremap <leader>gb :Gblame<cr>
