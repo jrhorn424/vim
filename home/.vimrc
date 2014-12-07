@@ -94,6 +94,7 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set colorcolumn=80              " column border at 80 chars
+set formatoptions+=ro           " autocomment new lines
 
 set nohlsearch                  " do not highlight matches
 set incsearch                   " incremental searching
@@ -377,7 +378,7 @@ let g:ruby_path = $RUBY_ROOT
 augroup markdown
   autocmd!
   autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=markdown
-  autocmd FileType markdown setlocal formatoptions+=troqwnl formatoptions-=caj comments=b:*,b:+,b:-
+  autocmd FileType markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0
 augroup END
 " }}}
 
