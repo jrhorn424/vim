@@ -18,9 +18,17 @@
 "=bundle tpope/vim-unimpaired
 "=bundle tpope/vim-eunuch
 "=bundle tpope/vim-rake
+"=bundle tpope/vim-projectionist
+"=bundle tpope/vim-rhubarb
+"=bundle tpope/vim-git
 "=bundle tpope/vim-markdown
 "=bundle tpope/vim-dispatch
+"=bundle tpope/vim-heroku
 "=bundle tpope/vim-bundler
+"=bundle tpope/vim-characterize
+"=bundle tpope/vim-speeddating
+"=bundle tpope/vim-sleuth
+"=bundle tpope/vim-jdaddy
 "=bundle sjl/vitality.vim
 "=bundle csexton/trailertrash.vim
 "=bundle christoomey/vim-tmux-navigator
