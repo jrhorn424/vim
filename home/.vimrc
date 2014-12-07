@@ -73,6 +73,7 @@ scriptencoding utf-8
 nnoremap Q <nop>
 inoremap <C-c> <Esc>
 let mapleader = "\<space>"
+nnoremap ; :
 
 set eol                         " include a newline at the end of files
 set autoread                    " automatically re-read changed files from disk if no pending writes
