@@ -340,6 +340,7 @@ filetype plugin indent on
 " Shortcuts {{{
 nmap <leader>x :exec getline(".")<cr>
 nmap <leader>ev :edit $MYVIMRC<cr>
+nmap <leader>sv :source $MYVIMRC<cr>
 nmap <leader>ss :source %<cr>
 nmap <leader>i mmgg=G`m<cr>
 " convert hashrockets to 1.9 syntax
