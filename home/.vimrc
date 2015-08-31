@@ -5,70 +5,79 @@
 "
 " These require pathogen. Use csexton/infect to install.
 " Pathogen bundle manifest {{{
+"
+" Editor {{{
 "=bundle tpope/vim-pathogen
-"=bundle tpope/vim-ragtag
+"=bundle tpope/vim-sensible
 "=bundle tpope/vim-surround
 "=bundle tpope/vim-repeat
 "=bundle tpope/vim-commentary
 "=bundle tpope/vim-abolish
-"=bundle tpope/vim-sensible
-"=bundle tpope/vim-scriptease
-"=bundle tpope/vim-endwise
 "=bundle tpope/vim-vinegar
 "=bundle tpope/vim-unimpaired
-"=bundle tpope/vim-eunuch
-"=bundle tpope/vim-rake
 "=bundle tpope/vim-projectionist
-"=bundle tpope/vim-rhubarb
-"=bundle tpope/vim-git
-"=bundle tpope/vim-markdown
-"=bundle tpope/vim-dispatch
-"=bundle tpope/vim-heroku
-"=bundle tpope/vim-bundler
-"=bundle tpope/vim-characterize
 "=bundle tpope/vim-speeddating
-"=bundle tpope/vim-sleuth
-"=bundle tpope/vim-jdaddy
-"=bundle sjl/vitality.vim
 "=bundle csexton/trailertrash.vim
-"=bundle christoomey/vim-tmux-navigator
 "=bundle wellle/targets.vim
-"=bundle nelstrom/vim-textobj-rubyblock " requires
-"=bundle kana/vim-textobj-user          "
 "=bundle Townk/vim-autoclose
 "=bundle scrooloose/syntastic
 "=bundle vim-scripts/visualrepeat
 "=bundle altercation/vim-colors-solarized
-"=bundle tpope/vim-rails
-"=bundle vim-ruby/vim-ruby
-"=bundle sunaku/vim-ruby-minitest
-"=bundle slim-template/vim-slim
+"=bundle junegunn/vim-easy-align
+"=bundle Shougo/unite.vim
+"=bundle Shougo/vimproc.vim
+"=bundle editorconfig/editorconfig-vim
+"=bundle sjl/gundo.vim
+" }}}
+"
+" System Integration {{{
+"=bundle tpope/vim-dispatch
+"=bundle christoomey/vim-tmux-navigator
+"=bundle tmux-plugins/vim-tmux
+"=bundle tmux-plugins/vim-tmux-focus-events
+"=bundle tyru/open-browser.vim
+"=bundle sjl/clam.vim
+" }}}
+"
+" Front-End {{{
+"=bundle tpope/vim-ragtag
+"=bundle tpope/vim-jdaddy
 "=bundle tpope/vim-haml                 " for scss
 "=bundle othree/html5.vim
 "=bundle jelera/vim-javascript-syntax
 "=bundle pangloss/vim-javascript
-"=bundle tpope/vim-fugitive
-"=bundle gregsexton/gitv
-"=bundle airblade/vim-gitgutter
-"=bundle junegunn/vim-easy-align
-"=bundle itspriddle/vim-marked
-"=bundle evanmiller/nginx-vim-syntax
-"=bundle Shougo/unite.vim
-"=bundle Shougo/unite-outline
-"=bundle Shougo/neomru.vim
-"=bundle Shougo/vimproc.vim
-"=bundle vim-scripts/restore_view.vim
-"=bundle justinmk/vim-sneak
-"=bundle vim-scripts/dbext.vim
-"=bundle vim-scripts/SearchComplete
-"=bundle vim-scripts/taglist.vim
-"=bundle vim-scripts/SQLComplete.vim
 "=bundle kchmck/vim-coffee-script
-"=bundle szw/vim-tags
-"=bundle milkypostman/vim-togglelist
-"=bundle kikijump/tslime.vim
-"=bundle benmills/vimux
+"=bundle mattn/emmet-vim
+" }}}
+"
+" Ruby {{{
+"=bundle tpope/vim-endwise
+"=bundle tpope/vim-rake
+"=bundle nelstrom/vim-textobj-rubyblock " requires
+"=bundle kana/vim-textobj-user          "
+"=bundle vim-ruby/vim-ruby
+"=bundle sunaku/vim-ruby-minitest
 "=bundle thoughtbot/vim-rspec
+" }}}
+"
+" Rails {{{
+"=bundle tpope/vim-rails
+" }}}
+"
+" Git {{{
+"=bundle tpope/vim-git
+"=bundle tpope/vim-fugitive
+"=bundle mhinz/vim-signify
+"=bundle mattn/gist-vim   "requires
+"=bundle mattn/webapi-vim "
+" }}}
+"
+" Markdown {{{
+"=bundle tpope/vim-markdown
+"=bundle jtratner/vim-flavored-markdown
+"=bundle amiorin/vim-fenced-code-blocks
+" }}}
+"
 " }}}
 
 set nocompatible
@@ -88,9 +97,7 @@ set exrc
 set secure
 
 set eol                         " include a newline at the end of files
-set autoread                    " automatically re-read changed files from disk if no pending writes
 set history=1000
-set autowrite                   " automatically write a file when leaving a modified buffer
 set showmode                    " Display the current mode
 set linespace=0                 " No extra spaces between rows
 set number                      " this, along with relative numbers, enables hybrid number mode
@@ -99,7 +106,6 @@ set shortmess=aTItoO            " disable splash screen
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set showcmd                     " display incomplete commands
 set virtualedit=onemore         " Allow for cursor beyond last character
-set hidden                      " Allow buffer switching without saving
 set tabpagemax=15               " Only show 15 tabs
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set backspace=indent,eol,start  " backspace through everything in insert mode
@@ -123,6 +129,9 @@ set shiftwidth=2
 set list listchars=tab:▸\ ,nbsp:×,trail:·,precedes:«,extends:»,eol:¬ " don't forget trailing whitespace after tab character
 set viewoptions=cursor,folds,slash,unix
 set lazyredraw
+
+set modeline
+set modelines=5
 
 " Wildmenu {{{
 set wildmenu
@@ -167,8 +176,6 @@ cmap w!! w !sudo tee % >/dev/null
 " Saner splits
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-" ctags
-set tags+=./tags
 " }}}
 
 " Generic look {{{
@@ -176,6 +183,25 @@ set background=dark
 highlight clear SignColumn
 syntax enable
 syntax sync minlines=256
+
+" upon hitting escape to change modes,
+" send successive move-left and move-right
+" commands to immediately redraw the cursor
+inoremap <special> <Esc> <Esc>jk
+
+" don't blink the cursor
+set guicursor+=i:blinkwait0
+
+" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
+" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 " }}}
 
 " Help Navigation {{{
@@ -197,8 +223,16 @@ if executable('ag')
   "let g:ctrlp_use_caching = 0
 endif
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
+" bind L to grep word under cursor
+nnoremap L :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
+" }}}
+
+" Mail {{{
+augroup mail
+  autocmd!
+  autocmd filetype mail setlocal fo+=aw
+  autocmd bufnewfile,bufread *.muttrc set filetype=muttrc
+augroup END
 " }}}
 
 " Pathogen bundle settings {{{
@@ -210,16 +244,35 @@ if isdirectory(g:bundle_dir)
 
   augroup trailertrash
     autocmd!
-    autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git'], &ft) < 0 | :TrailerTrim
+    autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git', 'txt'], &ft) < 0 | :TrailerTrim
   augroup END
 
-  nnoremap <silent> <F7> :TlistToggle<cr>
+  " Clam {{{
+  nnoremap ! :Clam<space>
+  vnoremap ! :ClamVisual<space>
+  " }}}
 
   " Git {{{
-  nmap <leader>gv :Gitv --all<cr>
-  nmap <leader>gV :Gitv! --all<cr>
-  vmap <leader>gV :Gitv! --all<cr>
   cabbrev git Git
+  nnoremap <leader>gb :Gblame<cr>
+  nnoremap <leader>gd :Gdiff<cr>
+  nnoremap <leader>gp :Git pull --rebase<cr><cr>
+  nnoremap <leader>gr :Gremove<cr>
+  nnoremap <leader>ga :Gwrite<cr>
+  nnoremap <leader>gf :Git fetch<cr>
+  nnoremap <leader>gs :Gstatus<cr>
+  nnoremap <leader>gc :Gcommit<cr>
+  nnoremap <leader>gu :Git push<cr>
+  nnoremap <leader>gl :Git log --decorate --oneline --graph --all<cr>
+  nnoremap <leader>g :Git<space>
+  " }}}
+
+  " Gist {{{
+  let g:gist_clip_command = 'pbcopy'
+  let g:gist_detect_filetype = 1
+  let g:gist_open_browser_after_post = 0
+  let g:gist_post_private = 1
+  let g:gist_show_privates = 1
   " }}}
 
   " Unite {{{
@@ -234,14 +287,9 @@ if isdirectory(g:bundle_dir)
   let g:unite_split_rule='topleft'
 
   nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  " nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-  " nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-  nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
   nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
   nnoremap <leader>/ :<C-u>Unite -no-quit  -buffer-name=search  grep:<cr>
   nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mappings mapping<cr>
-  " nnoremap <leader>s :<C-u>Unite -no-split -quick-match buffer<cr>
-  " nnoremap <silent><leader>n :Unite -silent -auto-resize grep:%::TODO\:\|FIXME\:\|NOTE\:<cr>
 
   if executable('ag')
     let g:unite_source_grep_command='ag'
@@ -282,38 +330,6 @@ if isdirectory(g:bundle_dir)
   let g:syntastic_javascript_checkers = ['jshint']
   " }}}
 
-  " Vimux mappings {{{
-  " Run last command executed by VimuxRunCommand
-  map <leader>vl :wa<CR> :VimuxRunLastCommand<CR>
-  map <leader>vi :wa<CR> :VimuxInspectRunner<CR>
-  map <leader>vk :wa<CR> :VimuxInterruptRunner<CR>
-  map <leader>vx :wa<CR> :VimuxClosePanes<CR>
-  " Prompt for a command to run
-  map <leader>vp :VimuxPromptCommand<CR>
-  " Close vim tmux runner opened by VimuxRunCommand
-  map <Leader>vq :VimuxCloseRunner<CR>
-  vmap <leader>vs "vy :call VimuxRunCommand(@v)<CR>
-  nmap <leader>vs vip<LocalLeader>vs<CR>"
-  " Zoom the runner pane (use <bind-key> z to restore runner pane)
-  map <Leader>vz :call VimuxZoomRunner()<CR>
-  " }}}
-
-  " Git mappings {{{
-  nnoremap <leader>gb :Gblame<cr>
-  nnoremap <leader>gd :Gdiff<cr>
-  nnoremap <leader>gp :Git pull --rebase<cr><cr>
-  nnoremap <leader>gr :Gremove<cr>
-  nnoremap <leader>ga :Gwrite<cr>
-  nnoremap <leader>gf :Git fetch<cr>
-  nnoremap <leader>gs :Gstatus<cr>
-  nnoremap <leader>gc :Gcommit<cr>
-  nnoremap <leader>gu :Git push<cr>
-  nnoremap <leader>gl :Git log --decorate --oneline --graph --all<cr>
-  nnoremap <leader>g :Git<space>
-  " }}}
-
-  let g:ruby_indent_access_modifier_style = 'outdent'
-
   " Colors {{{
   " Required for uxrvt and Terminal.app but conflicts with toggling
   " background.
@@ -330,6 +346,8 @@ if isdirectory(g:bundle_dir)
   colorscheme solarized
   highlight clear SignColumn " must appear after colorscheme
   " }}}
+
+  let g:ruby_indent_access_modifier_style = 'outdent'
 endif
 
 " This has to come after pathogen
@@ -378,6 +396,8 @@ augroup omnicomplete_group
   autocmd!
   autocmd FileType css             setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType ghmarkdown      setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType txt             setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript      setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType python          setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml             setlocal omnifunc=xmlcomplete#CompleteTags
@@ -416,44 +436,38 @@ let g:ruby_path = $RUBY_ROOT
 " Markdown {{{
 augroup markdown
   autocmd!
-  autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=markdown
-  autocmd FileType markdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0
+  autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=ghmarkdown
+  autocmd FileType markdown   setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 "comments+=b:-
+  autocmd FileType ghmarkdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 "comments+=b:-
 augroup END
 " }}}
 
-" Paranoia {{{
-" Save your backups to a less annoying place than the current directory.
-" If you have .vim-backup in the current directory, it'll use that.
-" Otherwise it saves it to ~/.vim/backup or . if all else fails.
-if isdirectory($HOME . '/.vim/backup') == 0
-  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
-endif
-set backupdir-=.
-set backupdir+=.
-set backupdir-=~/
-set backupdir^=~/.vim/backup/
-set backupdir^=./.vim-backup/
-set backup
+" Pronoia {{{
+set nohidden        " Do not allow buffer switching without saving
+set nobackup        " Do not keep backups
+set nowritebackup   " Do not use backups
+set noswapfile      " Do not use swap files
+set viminfo="NONE"  " Do not store buffer lists, global variables, marks, etc.
 
-" Save your swp files to a less annoying place than the current directory.
-" If you have .vim-swap in the current directory, it'll use that.
-" Otherwise it saves it to ~/.vim/swap, ~/tmp or .
-if isdirectory($HOME . '/.vim/swap') == 0
-  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
-endif
-set directory=./.vim-swap/
-set directory+=~/.vim/swap/
-set directory+=~/tmp/
-set directory+=.
+set autoread        " automatically re-read changed files from disk if no pending writes
+set autowrite       " automatically write a file when leaving a modified buffer
+set autowriteall    " automatically write a file when leaving vim
+set timeout         " enable timeout feature for mappings
+set ttimeout        " enable timeout feature for multi-key commands
+set timeoutlen=500  " how long before timeout (in ms)
+set updatetime=1000 " how long before CursorHold is triggered (in ms)
 
-" viminfo stores the the state of your previous editing session
-set viminfo+=n~/.vim/viminfo
+augroup save_auto
+  autocmd!
+  autocmd FocusLost * silent! wall
+  autocmd InsertLeave * silent! update
+  autocmd BufLeave * silent! update
+  autocmd CursorHold * silent! update
+augroup END
 
 if exists("+undofile")
   " undofile - This allows you to use undos after exiting and restarting
-  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
   " :help undo-persistence
-  " This is only present in 7.3+
   if isdirectory($HOME . '/.vim/undo') == 0
     :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
   endif
@@ -467,19 +481,30 @@ if exists("+undofile")
 endif
 " }}}
 
+" Spelling {{{
+set spelllang=en_us
+augroup spelling_group
+  autocmd!
+  autocmd BufRead,BufNewFile *.md,*.txt setlocal spell
+  autocmd FileType markdown   setlocal spell
+  autocmd FileType ghmarkdown setlocal spell
+  autocmd FileType gitcommit  setlocal spell
+augroup END
+" }}}
+
 " Whitespace settings for different filetypes {{{
 augroup whitespace_group
   autocmd!
-  autocmd FileType javascript,coffee            setlocal et sw=2 sts=2 isk+=$
-  autocmd FileType html,xhtml,css,scss,scss.css setlocal et sw=2 sts=2 isk+=-
-  autocmd FileType eruby,yaml,ruby              setlocal et sw=2 sts=2
-  autocmd FileType cucumber                     setlocal et sw=2 sts=2
-  autocmd FileType gitcommit                    setlocal spell
-  autocmd FileType ruby                         setlocal comments=:#\  tw=79
-  autocmd FileType vim                          setlocal et sw=2 sts=2 keywordprg=:help
-  autocmd FileType python                       setlocal sts=4 ts=4 shiftwidth=4 textwidth=79
-  autocmd FileType c                            setlocal et sw=2 sts=2
-  autocmd FileType objc,objcpp                  setlocal et sw=4 sts=4
+  autocmd FileType javascript,js                setlocal expandtab shiftwidth=2 softtabstop=2 isk+=$
+  autocmd FileType coffee                       setlocal expandtab shiftwidth=2 softtabstop=2 isk+=$
+  autocmd FileType html,xhtml,css,scss,scss.css setlocal expandtab shiftwidth=4 softtabstop=4 isk+=-
+  autocmd FileType eruby,yaml,ruby              setlocal expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType cucumber                     setlocal expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType ruby                         setlocal textwidth=79 comments=:#\ 
+  autocmd FileType vim                          setlocal expandtab shiftwidth=2 softtabstop=2 keywordprg=:help
+  autocmd FileType python                       setlocal softtabstop=4 ts=4 shiftwidth=4 textwidth=79
+  autocmd FileType c                            setlocal expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType objc,objcpp                  setlocal expandtab shiftwidth=4 softtabstop=4
 augroup END
 " }}}
 
