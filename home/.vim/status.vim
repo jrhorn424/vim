@@ -111,4 +111,3 @@ function! StatuslineTabWarning()
   endif
   return b:statusline_tab_warning
 endfunction
-
