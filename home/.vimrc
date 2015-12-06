@@ -301,6 +301,8 @@ if isdirectory(g:bundle_dir)
 
   " Syntastic {{{
   let g:syntastic_javascript_checkers = ['jshint']
+  let g:syntastic_html_tidy_exec = 'tidy5'
+  let g:syntastic_html_tidy_ignore_errors = [ 'proprietary attribute "ng' ]
   " }}}
 
   " Colors {{{
