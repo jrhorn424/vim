@@ -167,9 +167,12 @@ Plug 'csexton/trailertrash.vim'
 Plug 'wellle/targets.vim'
 Plug 'Townk/vim-autoclose'
 Plug 'scrooloose/syntastic'
-Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
+" }}}
+
+" Look {{{
+Plug 'altercation/vim-colors-solarized'
 " }}}
 "
 " System Integration {{{
