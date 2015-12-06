@@ -227,12 +227,6 @@ endif
 nnoremap L :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
 " }}}
 
-" Mail {{{
-augroup mail
-  autocmd!
-  autocmd filetype mail setlocal fo+=aw
-  autocmd bufnewfile,bufread *.muttrc set filetype=muttrc
-augroup END
 " }}}
 
 " Pathogen bundle settings {{{
@@ -427,6 +421,14 @@ nmap <leader>f6 :set foldlevel=6<cr>
 nmap <leader>f7 :set foldlevel=7<cr>
 nmap <leader>f8 :set foldlevel=8<cr>
 nmap <leader>f9 :set foldlevel=9<cr>
+" }}}
+
+" Mail {{{
+augroup mail
+  autocmd!
+  autocmd filetype mail setlocal nolist wrapmargin=0 textwidth=0 wrap linebreak
+  autocmd bufnewfile,bufread *.muttrc set filetype=muttrc
+augroup END
 " }}}
 
 " Ruby {{{
