@@ -248,41 +248,26 @@ if isdirectory(g:bundle_dir)
   let g:gist_show_privates = 1
   " }}}
 
-  " Unite {{{
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_rank'])
-  " restrict mru to current directory
-  call unite#custom#source('grep', 'max_candidates', 0)
+  " Fuzzy {{{
+  " Finders
+  nnoremap <Leader>p :Files<CR>
+  nnoremap <Leader>t :GitFiles<CR>
+  nnoremap <Leader>b :Buffers<CR>
+  nnoremap <Leader>] :Tags<CR>
 
-  let g:unite_data_directory='~/.vim/unite'
-  let g:unite_source_rec_max_cache_files=10000
-  let g:unite_prompt='» '
-  let g:unite_split_rule='topleft'
+  " Mapping selecting mappings
+  nmap <leader><tab> <plug>(fzf-maps-n)
+  xmap <leader><tab> <plug>(fzf-maps-x)
+  omap <leader><tab> <plug>(fzf-maps-o)
 
-  nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-  nnoremap <leader>b :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-  nnoremap <leader>/ :<C-u>Unite -no-quit  -buffer-name=search  grep:<cr>
-  nnoremap <leader>m :<C-u>Unite -no-split -buffer-name=mappings mapping<cr>
+  " Insert mode completion
+  imap <c-x><c-k> <plug>(fzf-complete-word)
+  imap <c-x><c-f> <plug>(fzf-complete-path)
+  imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+  imap <c-x><c-l> <plug>(fzf-complete-line)
 
-  if executable('ag')
-    let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup --line-numbers --context=0'
-    let g:unite_source_grep_recursive_opt=''
-    let g:unite_source_rec_async_command= 'ag --nocolor --nogroup --hidden -g ""'
-  endif
-
-  " Unite buffer options
-  augroup unite_options
-    autocmd!
-    autocmd FileType unite call s:unite_settings()
-  augroup END
-  function! s:unite_settings()
-    " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-j>   <plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <plug>(unite_select_previous_line)
-    nmap <buffer> Q       <plug>(unite_exit)
-    nmap <buffer> <esc>   <plug>(unite_exit)
-  endfunction
+  " Advanced customization using autoload functions
+  inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
   " }}}
 
   " surrounded {{{
