@@ -437,8 +437,7 @@ let g:ruby_path = $RUBY_ROOT
 augroup markdown
   autocmd!
   autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,txt} set filetype=ghmarkdown
-  autocmd FileType markdown   setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 "comments+=b:-
-  autocmd FileType ghmarkdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 "comments+=b:-
+  autocmd FileType markdown,ghmarkdown setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 "comments+=b:-
 augroup END
 " }}}
 
@@ -486,9 +485,7 @@ set spelllang=en_us
 augroup spelling_group
   autocmd!
   autocmd BufRead,BufNewFile *.md,*.txt setlocal spell
-  autocmd FileType markdown   setlocal spell
-  autocmd FileType ghmarkdown setlocal spell
-  autocmd FileType gitcommit  setlocal spell
+  autocmd FileType markdown,ghmarkdown,gitcommit,mail setlocal spell
 augroup END
 " }}}
 
