@@ -2,83 +2,6 @@
 "
 " $HOME/.vimrc
 " Jeffrey R. Horn <jeff@jrhorn.me>
-"
-" These require pathogen. Use csexton/infect to install.
-" Pathogen bundle manifest {{{
-"
-" Editor {{{
-"=bundle tpope/vim-pathogen
-"=bundle tpope/vim-sensible
-"=bundle tpope/vim-surround
-"=bundle tpope/vim-repeat
-"=bundle tpope/vim-commentary
-"=bundle tpope/vim-abolish
-"=bundle tpope/vim-vinegar
-"=bundle tpope/vim-unimpaired
-"=bundle tpope/vim-projectionist
-"=bundle tpope/vim-speeddating
-"=bundle csexton/trailertrash.vim
-"=bundle wellle/targets.vim
-"=bundle Townk/vim-autoclose
-"=bundle scrooloose/syntastic
-"=bundle vim-scripts/visualrepeat
-"=bundle altercation/vim-colors-solarized
-"=bundle junegunn/vim-easy-align
-"=bundle Shougo/unite.vim
-"=bundle Shougo/vimproc.vim
-"=bundle editorconfig/editorconfig-vim
-"=bundle sjl/gundo.vim
-" }}}
-"
-" System Integration {{{
-"=bundle tpope/vim-dispatch
-"=bundle christoomey/vim-tmux-navigator
-"=bundle tmux-plugins/vim-tmux
-"=bundle tmux-plugins/vim-tmux-focus-events
-"=bundle tyru/open-browser.vim
-"=bundle sjl/clam.vim
-" }}}
-"
-" Front-End {{{
-"=bundle tpope/vim-ragtag
-"=bundle tpope/vim-jdaddy
-"=bundle tpope/vim-haml                 " for scss
-"=bundle othree/html5.vim
-"=bundle jelera/vim-javascript-syntax
-"=bundle pangloss/vim-javascript
-"=bundle kchmck/vim-coffee-script
-"=bundle mattn/emmet-vim
-" }}}
-"
-" Ruby {{{
-"=bundle tpope/vim-endwise
-"=bundle tpope/vim-rake
-"=bundle nelstrom/vim-textobj-rubyblock " requires
-"=bundle kana/vim-textobj-user          "
-"=bundle vim-ruby/vim-ruby
-"=bundle sunaku/vim-ruby-minitest
-"=bundle thoughtbot/vim-rspec
-" }}}
-"
-" Rails {{{
-"=bundle tpope/vim-rails
-" }}}
-"
-" Git {{{
-"=bundle tpope/vim-git
-"=bundle tpope/vim-fugitive
-"=bundle mhinz/vim-signify
-"=bundle mattn/gist-vim   "requires
-"=bundle mattn/webapi-vim "
-" }}}
-"
-" Markdown {{{
-"=bundle tpope/vim-markdown
-"=bundle jtratner/vim-flavored-markdown
-"=bundle amiorin/vim-fenced-code-blocks
-" }}}
-"
-" }}}
 
 set nocompatible
 set encoding=utf-8
@@ -227,14 +150,70 @@ endif
 nnoremap L :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
 " }}}
 
+" Plugins {{{
+call plug#begin('~/.vim/bundle')
+" Editor {{{
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-speeddating'
+Plug 'sheerun/vim-polyglot'
+Plug 'csexton/trailertrash.vim'
+Plug 'wellle/targets.vim'
+Plug 'Townk/vim-autoclose'
+Plug 'scrooloose/syntastic'
+Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-peekaboo'
+" }}}
+"
+" System Integration {{{
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tyru/open-browser.vim'
+set rtp+=/usr/local/opt/fzf " required by
+Plug 'junegunn/fzf.vim'
+" }}}
+"
+" Front-End {{{
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-jdaddy'
+" }}}
+"
+" Ruby {{{
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rake'
+Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock'
+" }}}
+"
+" Rails {{{
+Plug 'tpope/vim-rails'
+" }}}
+"
+" Git {{{
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+" }}}
+"
+" Markdown {{{
+Plug 'tpope/vim-markdown'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'amiorin/vim-fenced-code-blocks'
+" }}}
+call plug#end()
 " }}}
 
-" Pathogen bundle settings {{{
+" Plugin settings {{{
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
 if isdirectory(g:bundle_dir)
-
-  runtime bundle/vim-pathogen/autoload/pathogen.vim
-  execute pathogen#infect()
 
   augroup trailertrash
     autocmd!
