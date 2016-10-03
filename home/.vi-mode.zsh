@@ -1,6 +1,6 @@
 set -o vi
-export EDITOR=vim
-export VISUAL=vim
+# export EDITOR=vim
+# export VISUAL=vim
 
 function zle-keymap-select zle-line-init
 {
