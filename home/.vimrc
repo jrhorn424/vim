@@ -164,8 +164,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-set rtp+=/usr/local/opt/fzf " required by
-Plug 'junegunn/fzf.vim'
+set rtp+=/usr/local/opt/fzf
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-markdown'
 Plug 'fxn/vim-monochrome'
@@ -185,8 +185,9 @@ if isdirectory(g:bundle_dir)
 
   " Fuzzy {{{
   " Finders
-  nnoremap <Leader>t :Files<CR>
-  nnoremap <Leader>p :Files<CR>
+  " nnoremap <Leader>t :Files<CR>
+  nnoremap <Leader>t :GFiles<CR>
+  " nnoremap <Leader>p :Files<CR>
   nnoremap <Leader>b :Buffers<CR>
   nnoremap <Leader>] :Tags<CR>
 
