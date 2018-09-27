@@ -140,7 +140,7 @@ augroup END
 
 " Grep {{{
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup
 endif
 
 " bind L to grep word under cursor
@@ -168,7 +168,6 @@ set rtp+=/usr/local/opt/fzf
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-markdown'
-Plug 'fxn/vim-monochrome'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-unimpaired'
 call plug#end()
@@ -281,8 +280,15 @@ set autoindent
 set smartindent
 filetype plugin indent on
 
-syntax off
-colorscheme monochrome
-" syntax on
-" colorscheme base16-grayscale-dark
+if has("termguicolors")
+  let base16colorspace=256
+  set termguicolors
+endif
+
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
+
+set background=dark
+syntax on
 " }}}
