@@ -1,0 +1,8 @@
+if has("termguicolors")
+  let base16colorspace=256
+  set termguicolors
+endif
+
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
