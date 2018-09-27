@@ -1,0 +1,18 @@
+[submodule "home/.janus/vim-tmux-focus-events"]
+	path = home/.janus/vim-tmux-focus-events
+	url = https://github.com/tmux-plugins/vim-tmux-focus-events
+[submodule "home/.janus/vim-tmux-navigator"]
+	path = home/.janus/vim-tmux-navigator
+	url = git://github.com/christoomey/vim-tmux-navigator.git
+[submodule "home/.janus/vim-tmux"]
+	path = home/.janus/vim-tmux
+	url = git://github.com/tmux-plugins/vim-tmux.git
+[submodule "home/.janus/fzf.vim"]
+	path = home/.janus/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "home/.janus/editorconfig-vim"]
+	path = home/.janus/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim
+[submodule "home/.janus/base16-vim"]
+	path = home/.janus/base16-vim
+	url = https://github.com/chriskempson/base16-vim.git
