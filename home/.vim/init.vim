@@ -16,20 +16,6 @@ set secure
 
 " Bundles & Their Configuration {{{
 source $HOME/.vim/bundles.vim
-
-" Plugin settings {{{
-
-" Shortcuts {{{
-nmap <leader>i mmgg=G`m<cr>
-
-" buffer nav
-nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<cr>
-
-" Map <leader>ff to display all lines with keyword under cursor
-" and ask which one to jump to
-nmap <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<cr>
-" }}}
-
 source $HOME/.vim/trailertrash.vim
 source $HOME/.vim/fuzzy.vim
 source $HOME/.vim/align.vim
