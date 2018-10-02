@@ -18,11 +18,6 @@ set secure
 source $HOME/.vim/bundles.vim
 
 " Plugin settings {{{
-  augroup trailertrash
-    autocmd!
-    autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git', 'txt'], &ft) < 0 | :TrailerTrim
-  augroup END
-
 
 " Shortcuts {{{
 nmap <leader>i mmgg=G`m<cr>
@@ -35,6 +30,7 @@ nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<cr>
 nmap <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<cr>
 " }}}
 
+source $HOME/.vim/trailertrash.vim
 source $HOME/.vim/fuzzy.vim
 source $HOME/.vim/align.vim
 " }}}
