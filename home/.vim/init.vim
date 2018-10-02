@@ -84,15 +84,9 @@ set wildignore+=app/assets/images
 set wildignore+=app/assets/fonts
 " }}}
 
+source $HOME/.vim/cursor.vim
+
 " Miscellaneous settings {{{
-" don't highlight lines or columns, only highlight lines in insert mode
-set nocursorline
-set nocursorcolumn
-augroup highlighting
-  autocmd!
-  autocmd InsertEnter * setlocal cursorline
-  autocmd InsertLeave * setlocal nocursorline
-augroup END
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
 noremap k gk
@@ -106,38 +100,6 @@ cmap w!! w !sudo tee % >/dev/null
 " Saner splits
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-" }}}
-
-" Generic look {{{
-highlight clear
-
-" upon hitting escape to change modes,
-" send successive move-left and move-right
-" commands to immediately redraw the cursor
-inoremap <special> <Esc> <Esc>jk
-
-" don't blink the cursor
-set guicursor+=i:blinkwait0
-
-" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
-" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
-
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-" }}}
-
-" Help Navigation {{{
-augroup helpnav
-  autocmd!
-  autocmd filetype help nnoremap <buffer><cr> <c-]>
-  autocmd filetype help nnoremap <buffer><bs> <c-T>
-  autocmd filetype help nnoremap <buffer>q :q<cr>
-augroup END
 " }}}
 
 " Grep {{{
