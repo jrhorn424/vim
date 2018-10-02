@@ -14,6 +14,7 @@ source $HOME/.vim/pronoia.vim
 set exrc
 set secure
 
+" Bundles & Their Configuration {{{
 source $HOME/.vim/bundles.vim
 
 " Plugin settings {{{
@@ -48,15 +49,6 @@ if isdirectory(g:bundle_dir)
   inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
   " }}}
 
-  " EasyAlign {{{
-  " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-  vmap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-  nmap <Leader>a <Plug>(EasyAlign)
-  " }}}
-endif
-
 
 " Shortcuts {{{
 nmap <leader>i mmgg=G`m<cr>
@@ -75,6 +67,7 @@ set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 " }}}
 
+source $HOME/.vim/align.vim
 " }}}
 
 source $HOME/.vim/status.vim
