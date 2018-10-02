@@ -24,10 +24,6 @@ source $HOME/.vim/align.vim
 source $HOME/.vim/status.vim
 
 " Postamble {{{
-set autoindent
-set smartindent
-filetype plugin indent on
-
 if has("termguicolors") && exists('$TMUX') == 0 
   let base16colorspace=256
   set termguicolors
@@ -38,7 +34,6 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 set background=dark
-syntax on
 " }}}
 
 source $HOME/.vim/after.vim

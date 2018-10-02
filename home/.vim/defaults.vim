@@ -63,3 +63,8 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
+
+set autoindent
+set smartindent
+filetype plugin indent on
+syntax on
