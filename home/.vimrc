@@ -3,6 +3,8 @@
 " $HOME/.vimrc
 " Jeffrey R. Horn <jeff@jrhorn.me>
 
+source $HOME/.vim/before.vim
+
 " Preamble {{{
 set nocompatible
 if &encoding
@@ -292,3 +294,5 @@ endif
 set background=dark
 syntax on
 " }}}
+
+source $HOME/.vim/after.vim
