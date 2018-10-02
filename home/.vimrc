@@ -280,7 +280,7 @@ set autoindent
 set smartindent
 filetype plugin indent on
 
-if has("termguicolors")
+if has("termguicolors") && exists('$TMUX') == 0 
   let base16colorspace=256
   set termguicolors
 endif
