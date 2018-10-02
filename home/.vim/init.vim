@@ -16,6 +16,7 @@ source $HOME/.vim/bundles.vim
 source $HOME/.vim/trailertrash.vim
 source $HOME/.vim/fuzzy.vim
 source $HOME/.vim/align.vim
+source $HOME/.vim/test.vim
 " }}}
 "
 source $HOME/.vim/after.vim

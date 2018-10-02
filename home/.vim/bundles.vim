@@ -29,6 +29,8 @@ if isdirectory(g:bundle_dir)
     Plug 'junegunn/vim-easy-align'
     Plug 'junegunn/vim-peekaboo'
 
+    Plug 'janko-m/vim-test'
+
     " Tmux {{{
     Plug 'tmux-plugins/vim-tmux'
     Plug 'tmux-plugins/vim-tmux-focus-events'
