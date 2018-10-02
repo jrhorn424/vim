@@ -9,10 +9,7 @@ source $HOME/.vim/cursor.vim
 source $HOME/.vim/wildmenu.vim
 source $HOME/.vim/grep.vim
 source $HOME/.vim/pronoia.vim
-
-" Turn on per-project vimrc files, but disable unsafe commands in them
-set exrc
-set secure
+source $HOME/.vim/status.vim
 
 " Bundles & Their Configuration {{{
 source $HOME/.vim/bundles.vim
@@ -20,7 +17,9 @@ source $HOME/.vim/trailertrash.vim
 source $HOME/.vim/fuzzy.vim
 source $HOME/.vim/align.vim
 " }}}
-
-source $HOME/.vim/status.vim
-
+"
 source $HOME/.vim/after.vim
+
+" Turn on per-project vimrc files, but disable unsafe commands in them
+set exrc
+set secure
