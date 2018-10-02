@@ -102,15 +102,7 @@ set splitright                  " Puts new vsplit windows to the right of the cu
 set splitbelow                  " Puts new split windows to the bottom of the current
 " }}}
 
-" Grep {{{
-if executable('ag')
-  set grepprg=ag\ --nogroup
-endif
-
-" bind L to grep word under cursor
-nnoremap L :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
-" }}}
-
+source $HOME/.vim/grep.vim
 source $HOME/.vim/bundles.vim
 
 " Plugin settings {{{
