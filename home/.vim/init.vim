@@ -149,31 +149,7 @@ endif
 nnoremap L :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
 " }}}
 
-" Plugins {{{
-call plug#begin('~/.vim/bundle')
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-vinegar'
-Plug 'sheerun/vim-polyglot'
-Plug 'csexton/trailertrash.vim'
-Plug 'wellle/targets.vim'
-Plug 'Townk/vim-autoclose'
-Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/vim-peekaboo'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-set rtp+=/usr/local/opt/fzf
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-markdown'
-Plug 'chriskempson/base16-vim'
-Plug 'tpope/vim-unimpaired'
-call plug#end()
-" }}}
+source $HOME/.vim/bundles.vim
 
 " Plugin settings {{{
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
