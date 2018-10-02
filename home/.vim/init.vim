@@ -35,12 +35,6 @@ nmap <leader>d :bp<bar>sp<bar>bn<bar>bd<cr>
 nmap <leader>ff [I:let nr = input("Which one: ")<bar>exe "normal " . nr ."[\t"<cr>
 " }}}
 
-" Folding {{{
-set foldmethod=indent   "fold based on indent
-set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
-" }}}
-
 source $HOME/.vim/fuzzy.vim
 source $HOME/.vim/align.vim
 " }}}
