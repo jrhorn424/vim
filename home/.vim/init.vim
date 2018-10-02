@@ -4,6 +4,9 @@
 " Jeffrey R. Horn <jeff@jrhorn.me>
 
 source $HOME/.vim/before.vim
+source $HOME/.vim/cursor.vim
+source $HOME/.vim/wildmenu.vim
+source $HOME/.vim/grep.vim
 
 " Preamble {{{
 set nocompatible
@@ -63,9 +66,6 @@ set modeline
 set modelines=5
 " }}}
 
-source $HOME/.vim/wildmenu.vim
-source $HOME/.vim/cursor.vim
-
 " Miscellaneous settings {{{
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -82,7 +82,6 @@ set splitright                  " Puts new vsplit windows to the right of the cu
 set splitbelow                  " Puts new split windows to the bottom of the current
 " }}}
 
-source $HOME/.vim/grep.vim
 source $HOME/.vim/bundles.vim
 
 " Plugin settings {{{
