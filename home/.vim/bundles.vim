@@ -6,39 +6,38 @@ endif
 
 if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
 if isdirectory(g:bundle_dir)
+  call plug#begin('~/.vim/bundle')
+    " Basics {{{
+    Plug 'tpope/vim-sensible'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'editorconfig/editorconfig-vim'
+    " }}}
 
-call plug#begin('~/.vim/bundle')
-  " Basics {{{
-  Plug 'tpope/vim-sensible'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'editorconfig/editorconfig-vim'
-  " }}}
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-abolish'
+    Plug 'tpope/vim-vinegar'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-git'
+    Plug 'tpope/vim-markdown'
 
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-abolish'
-  Plug 'tpope/vim-vinegar'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-git'
-  Plug 'tpope/vim-markdown'
+    Plug 'csexton/trailertrash.vim'
+    Plug 'wellle/targets.vim'
+    Plug 'Townk/vim-autoclose'
 
-  Plug 'csexton/trailertrash.vim'
-  Plug 'wellle/targets.vim'
-  Plug 'Townk/vim-autoclose'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'junegunn/vim-peekaboo'
 
-  Plug 'junegunn/vim-easy-align'
-  Plug 'junegunn/vim-peekaboo'
+    " Tmux {{{
+    Plug 'tmux-plugins/vim-tmux'
+    Plug 'tmux-plugins/vim-tmux-focus-events'
+    Plug 'christoomey/vim-tmux-navigator'
+    " }}}
 
-  " Tmux {{{
-  Plug 'tmux-plugins/vim-tmux'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
-  Plug 'christoomey/vim-tmux-navigator'
-  " }}}
+    set rtp+=/usr/local/opt/fzf
+    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
-  set rtp+=/usr/local/opt/fzf
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-
-  Plug 'chriskempson/base16-vim'
-call plug#end()
-
+    Plug 'chriskempson/base16-vim'
+  call plug#end()
+endif
