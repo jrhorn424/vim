@@ -18,9 +18,6 @@ set secure
 source $HOME/.vim/bundles.vim
 
 " Plugin settings {{{
-if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
-if isdirectory(g:bundle_dir)
-
   augroup trailertrash
     autocmd!
     autocmd BufWritePre * if index(['markdown', 'vim', 'diff', 'git', 'txt'], &ft) < 0 | :TrailerTrim

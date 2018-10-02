@@ -4,6 +4,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+if !exists('g:bundle_dir') | let g:bundle_dir =  expand('$HOME/.vim/bundle') | endif
+if isdirectory(g:bundle_dir)
+
 call plug#begin('~/.vim/bundle')
   " Basics {{{
   Plug 'tpope/vim-sensible'
