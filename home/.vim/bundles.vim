@@ -22,7 +22,7 @@ if isdirectory(g:bundle_dir)
     Plug 'tpope/vim-git'
     Plug 'tpope/vim-markdown'
 
-    Plug 'csexton/trailertrash.vim'
+    Plug 'w0rp/ale'
     Plug 'wellle/targets.vim'
     Plug 'Townk/vim-autoclose'
 
@@ -35,6 +35,15 @@ if isdirectory(g:bundle_dir)
     Plug 'tmux-plugins/vim-tmux'
     Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'christoomey/vim-tmux-navigator'
+    " }}}
+
+    " JavaScript & TypeScript {{{
+    Plug 'moll/vim-node'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'Quramy/tsuquyomi'
+    Plug 'Quramy/vim-js-pretty-template'
+    Plug 'jason0x43/vim-js-indent'
+    Plug 'Valloric/YouCompleteMe'
     " }}}
 
     set rtp+=/usr/local/opt/fzf

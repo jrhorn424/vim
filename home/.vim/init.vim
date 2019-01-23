@@ -13,12 +13,16 @@ source $HOME/.vim/status.vim
 
 " Bundles & Their Configuration {{{
 source $HOME/.vim/bundles.vim
-source $HOME/.vim/trailertrash.vim
 source $HOME/.vim/fuzzy.vim
 source $HOME/.vim/align.vim
 source $HOME/.vim/test.vim
+source $HOME/.vim/ale-before.vim
+source $HOME/.vim/ale.vim
+source $HOME/.vim/ale-after.vim
 " }}}
-"
+
+source $HOME/.vim/utilities.vim
+
 source $HOME/.vim/after.vim
 
 " Turn on per-project vimrc files, but disable unsafe commands in them
